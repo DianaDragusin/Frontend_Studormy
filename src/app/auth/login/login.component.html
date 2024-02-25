@@ -1,0 +1,33 @@
+<mat-card>
+  <mat-card-content>
+    <div class="login-options">
+      <button mat-raised-button [class.selected]="selectedRole === 'student'" color="primary" (click)="selectRole('student')">Login as Student</button>
+      <button mat-raised-button [class.selected]="selectedRole === 'admin'" color="primary" (click)="selectRole('admin')">Login as Admin</button>
+    </div>
+    <h2 >Login</h2>
+    <form [formGroup]="loginForm">
+      <div style="display: flex; flex-direction: column;">
+        <mat-form-field class="form-group">
+          <input matInput type="text" id="email" formControlName="email" placeholder="Email"/>
+          <mat-error><app-form-error-handling [control]="loginForm.get('email')" [errorMessages]="EMAIL_ERROR_MESSAGES"></app-form-error-handling></mat-error>
+        </mat-form-field>
+        <mat-form-field class="form-group">
+          <div style="display: flex;">
+            <input matInput
+                   [type]="passwordVisible ? 'text' : 'password'"
+                   id="password"
+                   formControlName="password"
+                   placeholder="Password"/>
+            <button style="padding: 0; height: auto; width: auto" mat-icon-button type="button"
+                    (click)="togglePasswordVisibility()">
+              <mat-icon>{{ passwordVisible ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+          </div>
+          <mat-error><app-form-error-handling [control]="loginForm.get('password')" [errorMessages]="PASSWORD_ERROR_MESSAGES"></app-form-error-handling></mat-error>
+        </mat-form-field>
+        <button mat-raised-button type="submit" [disabled]="!loginForm.valid" [color]="loginForm.valid ? 'primary' : ''" (click)="onSubmit()">Login</button>
+      </div>
+      <button mat-button routerLink="/signup">Go to Sign Up</button>
+    </form>
+  </mat-card-content>
+</mat-card>
