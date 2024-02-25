@@ -1,0 +1,6 @@
+<ng-container  [ngSwitch]="control?.errors | firstField">
+  <ng-container *ngSwitchCase="FormErrorEnum.MIN_LENGTH">{{errorMessages?.[FormErrorEnum.MIN_LENGTH] ? errorMessages[FormErrorEnum.MIN_LENGTH]  : 'Minimum length has not been reached'}}</ng-container>
+  <ng-container *ngSwitchCase="FormErrorEnum.MAX_LENGTH">{{errorMessages?.[FormErrorEnum.MAX_LENGTH] ? errorMessages[FormErrorEnum.MAX_LENGTH] : 'Maximum length has already been reached'}}</ng-container>
+  <ng-container *ngSwitchCase="FormErrorEnum.REQUIRED">{{errorMessages?.[FormErrorEnum.REQUIRED] ? errorMessages[FormErrorEnum.REQUIRED] : 'This field is required'}}</ng-container>
+  <ng-container *ngSwitchDefault>Validation error</ng-container>
+</ng-container>

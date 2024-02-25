@@ -1,0 +1,33 @@
+
+.login-options button {
+  transition: box-shadow 0.3s ease; /* Add transition for smooth effect */
+}
+
+.login-options button.selected {
+  box-shadow: 0px 0px 5px 2px ; /* Add shadow effect when selected */
+}
+.login-options {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+h2
+ {
+  display: flex;
+  justify-content: center;
+ }
+
+mat-card {
+  background-color: #fff;
+  padding: 200px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+mat-card-content{
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
