@@ -1,4 +1,5 @@
+import {Dormitory} from "../../admin/models/dormitory";
 
 export interface LoginResponse {
- success: boolean;
+  id: number;
 }

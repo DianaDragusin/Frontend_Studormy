@@ -1,4 +1,4 @@
 export interface CustomErrorResponse {
-  errorCode: string;
-  message: string;
+  businessCode: number;
+  errorMessage: string;
 }

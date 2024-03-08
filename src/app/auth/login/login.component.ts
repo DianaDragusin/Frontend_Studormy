@@ -4,11 +4,12 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {EMAIL_ERROR_MESSAGES, PASSWORD_ERROR_MESSAGES} from './login.config';
 import {UserRole} from "../enums/userRole";
 import {LoginModel} from "../models/loginModel";
-import {LoginResponse} from "../models/loginResponse";
 import {Router} from "@angular/router";
 import {AuthService} from "../services/auth.service";
 import {HandleErrorService} from "../services/handle-error.service";
 import {CustomErrorResponse} from "../models/customErrorResponse";
+import {LoginResponse} from "../models/loginResponse";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-login',
@@ -78,17 +79,17 @@ export class LoginComponent extends BaseComponent implements OnInit {
 
       this.authService.login(user).subscribe(
         (loginResponse: LoginResponse) => {
-
+         console.log(loginResponse);
           if (this.selectedRole == UserRole.Student) {
-            this.router.navigate(['profile']);
+            this.router.navigate(['profile'], { queryParams: loginResponse });
           } else if (this.selectedRole == UserRole.Admin) {
-            this.router.navigate(['addlist']);
+            this.router.navigate(['addlist'], { queryParams: loginResponse });
           }
 
           this.handleErrorService.handleSuccess("Successfully logged in");
 
         },
-        (error: string) => {
+        (error: HttpErrorResponse) => {
           this.handleErrorService.handleError(error);
         }
       );
