@@ -1,6 +1,8 @@
 
 import { Injectable } from '@angular/core';
 import {ToastrService} from "ngx-toastr";
+import {CustomErrorResponse} from "../models/customErrorResponse";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +10,8 @@ import {ToastrService} from "ngx-toastr";
 export class HandleErrorService {
 
   constructor( private toaster: ToastrService) { }
-  public handleError(err: string) {
-    if (err) this.toaster.error(err);
+  public handleError(err: HttpErrorResponse) {
+    if (err) this.toaster.error(err.error.errorMessage);
   }
 
   public handleSuccess(suc: string) {
