@@ -20,6 +20,7 @@ export class UploadfileComponent {
   response?:  StudentResponse[] = [];
   uploadProgress?:number;
   uploadSub?: Subscription;
+  uploadSuccesful: boolean = true;
   constructor(private studentService: UploadStudentsService,private http: HttpClient,private handleErrorService: HandleErrorService) { }
 
   onFileSelected(event: any): void {
@@ -55,11 +56,14 @@ upload(): void
         response => {
           this.response = response;
           this.uploadProgress = undefined; // Reset progress
-          this.handleErrorService.handleSuccess("Successfully logged in")
+          this.handleErrorService.handleSuccess("All the students have been successfully added")
+          this.uploadSuccesful = true;
         },
         error => {
           this.handleErrorService.handleError(error)
           this.uploadProgress = undefined; // Reset progress
+          this.uploadSuccesful = false;
+
         }
       );
     };

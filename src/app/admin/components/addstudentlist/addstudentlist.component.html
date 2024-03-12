@@ -1,2 +1,40 @@
-<p>addstudentlist works!</p>
-<app-uploadfile [idAdmin]="loginResponse.id"></app-uploadfile>
+
+<mat-stepper [linear]=true  labelPosition="bottom"  [orientation]="(stepperOrientation | async)!" #stepper>
+  <mat-step [stepControl]="firstFormGroup" state="home" >
+    <form [formGroup]="firstFormGroup" >
+      <ng-template matStepLabel>Fill out the name of your dormitory</ng-template>
+      <mat-form-field>
+        <mat-label>Dormitory Name</mat-label>
+        <input matInput placeholder="Ex: Victoria Dormitory" formControlName="dormitory" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step label="Upload a file" state="download">
+    <app-uploadfile [idAdmin]="loginResponse.id" #uploadFile></app-uploadfile>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperNext [disabled]="!uploadFile.uploadSuccesful">Next</button>
+    </div>
+  </mat-step>
+  <mat-step state="rocket">
+    <ng-template matStepLabel>Done</ng-template>
+    <p>Congratulations you have finished the setup.</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+  <ng-template matStepperIcon="home">
+    <mat-icon>home</mat-icon>
+  </ng-template>
+  <ng-template matStepperIcon="download">
+    <mat-icon>upload</mat-icon>
+  </ng-template>
+  <ng-template matStepperIcon="rocket">
+    <mat-icon>rocketlaunch</mat-icon>
+  </ng-template>
+</mat-stepper>
+
