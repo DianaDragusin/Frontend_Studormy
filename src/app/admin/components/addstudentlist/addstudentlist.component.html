@@ -1,28 +1,34 @@
 
-<mat-stepper [linear]=true  labelPosition="bottom"  [orientation]="(stepperOrientation | async)!" #stepper>
+<mat-stepper [linear]=true  labelPosition="bottom"  [orientation]="(stepperOrientation | async)!" #stepper >
   <mat-step [stepControl]="firstFormGroup" state="home" >
     <form [formGroup]="firstFormGroup" >
       <ng-template matStepLabel>Fill out the name of your dormitory</ng-template>
-      <mat-form-field>
-        <mat-label>Dormitory Name</mat-label>
-        <input matInput placeholder="Ex: Victoria Dormitory" formControlName="dormitory" required>
-      </mat-form-field>
-      <div>
+      <div class="centered-wrapper">
+        <mat-form-field>
+          <mat-label>Dormitory Name</mat-label>
+          <input matInput placeholder="Ex: Victoria Dormitory" formControlName="dormitory" required>
+        </mat-form-field>
+      </div>
+      <div class="centered-wrapper">
         <button mat-button matStepperNext>Next</button>
       </div>
     </form>
   </mat-step>
   <mat-step label="Upload a file" state="download">
+    <div class="centered-wrapper">
     <app-uploadfile [idAdmin]="loginResponse.id" #uploadFile></app-uploadfile>
-    <div>
+    </div>
+    <div class="centered-wrapper">
       <button mat-button matStepperPrevious>Back</button>
       <button mat-button matStepperNext [disabled]="!uploadFile.uploadSuccesful">Next</button>
     </div>
   </mat-step>
   <mat-step state="rocket">
+    <div class="centered-wrapper">
     <ng-template matStepLabel>Done</ng-template>
     <p>Congratulations you have finished the setup.</p>
-    <div>
+    </div>
+    <div class="centered-wrapper">
       <button mat-button matStepperPrevious>Back</button>
       <button mat-button (click)="stepper.reset()">Reset</button>
     </div>

@@ -79,7 +79,6 @@ export class LoginComponent extends BaseComponent implements OnInit {
 
       this.authService.login(user).subscribe(
         (loginResponse: LoginResponse) => {
-         console.log(loginResponse);
           if (this.selectedRole == UserRole.Student) {
             this.router.navigate(['profile'], { queryParams: loginResponse });
           } else if (this.selectedRole == UserRole.Admin) {
