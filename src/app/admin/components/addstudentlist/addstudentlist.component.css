@@ -1,12 +1,22 @@
 .mat-stepper {
   margin-top: 8px;
 }
+
 .center-stepper {
   display: flex;
   justify-content: center;
 }
 
-
 .mat-mdc-form-field {
   margin-top: 16px;
+}
+
+.centered-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+mat-form-field {
+  width: 40%;
 }

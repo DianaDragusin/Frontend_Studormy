@@ -10,14 +10,14 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatStepperModule} from '@angular/material/stepper';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-
-
+import{MatSliderModule} from "@angular/material/slider";
 
 
 const materialModules = [
   MatToolbarModule,
   MatButtonModule,
   MatCardModule,
+  MatSliderModule,
   MatFormFieldModule,
   MatInputModule,
   MatIconModule,
@@ -26,6 +26,7 @@ const materialModules = [
   MatStepperModule,
   FormsModule,
   ReactiveFormsModule,
+
 
 
 

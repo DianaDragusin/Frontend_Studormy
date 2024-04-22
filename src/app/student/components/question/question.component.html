@@ -1,0 +1,20 @@
+
+<mat-card >
+  <mat-card-content>
+    <h2>{{question}}</h2>
+    <div class="label-container">
+      <label>Strongly Disagree</label>
+      <label class="value-label">{{slider.value}}</label>
+      <label>Strongly Agree</label>
+    </div>
+    <mat-slider
+      class="example-margin"
+      [disabled]="disabled"
+      [max]="max"
+      [min]="min"
+      [showTickMarks]="showTicks"
+    >
+      <input matSliderThumb [(ngModel)]="value"  (change)="onInputChange()"#slider>
+    </mat-slider>
+  </mat-card-content>
+</mat-card>

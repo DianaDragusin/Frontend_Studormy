@@ -20,13 +20,13 @@ h2
 
 mat-card {
   background-color: #fff;
-  padding: 200px;
+  padding: 10%;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 mat-card-content{
   background-color: #fff;
-  padding: 20px;
+  padding: 20%;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

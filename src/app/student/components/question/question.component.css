@@ -1,0 +1,40 @@
+
+.example-h2 {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.example-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+}
+
+.example-margin {
+  margin: 8px;
+}
+
+.example-width {
+  max-width: 180px;
+  width: 100%;
+}
+
+.mat-mdc-slider {
+  max-width: 500px;
+  width: 100%;
+}
+
+
+.label-container {
+  display: flex;
+  justify-content: space-around;
+  max-width: 600px;
+  width: 100%;
+  margin: auto;
+
+}
+.value-label {
+  font-weight: 600;
+}
+
