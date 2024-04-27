@@ -1,0 +1,12 @@
+.example-card {
+  max-width: 30%;
+  margin: 10% 5%;
+}
+text-box{
+  display: flex;
+  justify-content: center;
+}
+.centered{
+ text-align: center;
+}
+

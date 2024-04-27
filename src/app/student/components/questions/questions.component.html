@@ -1,3 +1,4 @@
+<app-groups></app-groups>
 <div class="card-container">
   <div *ngIf="cluster ===-1">
     <mat-card class="wide-card">
@@ -13,12 +14,16 @@
       <button mat-raised-button color="primary" (click)="finalizeResponses()">Submit All</button>
     </mat-card>
   </div>
-  <div *ngIf="cluster !== -1">
+  <div *ngIf="cluster !== -1" >
     <mat-card class="wide-card">
-        <h2>Congratulations you are part of cluster {{cluster}}. Here are some suggestions of people like you</h2>
+        <h2>Congratulations you are part of cluster {{cluster}}. Here are some suggestions of people like you, in your dorm</h2>
     </mat-card>
+    <div *ngFor="let student of students">
+    <app-person-card [student]="student"></app-person-card>
   </div>
 
+
+</div>
 
 </div>
 

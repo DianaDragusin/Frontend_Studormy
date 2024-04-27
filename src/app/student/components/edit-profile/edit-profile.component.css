@@ -1,0 +1,73 @@
+/* Overall modal content area */
+mat-dialog-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Align content to the top */
+  overflow-y: auto; /* Scrollbar will appear if the content overflows */
+  max-height: 80vh; /* You can adjust this value as per your design needs */
+  padding: 20px; /* Add padding inside the content area */
+}
+
+/* Carousel container */
+.avatar-carousel {
+  position: relative;
+  margin: 5% 0;
+}
+
+/* Individual carousel item */
+.carousel-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel {
+  display: flex;
+  align-items: center;
+}
+
+/* Avatar image styles */
+.avatar-image {
+  width: 120px; /* Make the avatar larger */
+  height: 120px;
+  border-radius: 50%; /* Circle shape */
+  object-fit: cover; /* Keep aspect ratio */
+  margin-bottom: 20px; /* Space below the avatar */
+}
+
+
+/* Carousel control buttons */
+button[mat-mini-fab] {
+  margin: 0 5px;
+  /* Add additional styles for the buttons here */
+}
+
+/* Index display (optional: hide if not needed) */
+.avatar-carousel .carousel-content .carousel div {
+  position: absolute;
+  bottom: -30px; /* Adjust as needed */
+  color: #333;
+  font-size: 0.9em;
+}
+
+/* Form styling */
+form {
+  width: 100%; /* Adjust as needed */
+  /* Additional form styles here */
+}
+
+/* Action buttons */
+mat-dialog-actions {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  padding-top: 20px;
+}
+
+/* Button styles */
+mat-dialog-actions button {
+  padding: 10px 20px;
+  /* Additional button styles here */
+}
+

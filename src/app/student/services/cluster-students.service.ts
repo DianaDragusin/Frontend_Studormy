@@ -24,9 +24,9 @@ export class ClusterStudentsService {
   predictCluster(studentId: number ,clusterOcean :ClusterOceanResponse): Observable<PredictionClusterResponse> {
    return this.http.put<PredictionClusterResponse>(`${this.url}/personality-cluster-prediction/` + studentId,  clusterOcean );
   }
-
-  getStudent(studentId: number): Observable<GetStudentResponse>{
-    return this.http.get<GetStudentResponse>(`${this.url}/` + studentId );
+   getStudentsSameClusterAndDormitory(studentId:number):Observable<GetStudentResponse[]>{
+    return this.http.get<GetStudentResponse[]>(`${this.url}/cluster/` + studentId );
   }
+
 
 }
