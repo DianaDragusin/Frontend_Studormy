@@ -7,6 +7,8 @@ import {ClusterOceanRequest} from "../../models/ClusterOceanRequest";
 import {switchMap} from "rxjs";
 import {PredictionClusterResponse} from "../../models/PredictionClusterResponse";
 import {GetStudentResponse} from "../../models/GetStudentResponse";
+import {HandleErrorService} from "../../../auth/services/handle-error.service";
+import {StudentService} from "../../services/student.service";
 @Component({
   selector: 'app-questions',
   templateUrl: './questions.component.html',
@@ -19,10 +21,13 @@ export class QuestionsComponent  implements OnInit{
   flagNext = true;
   flagPrev= false;
   cluster = -1;
+  students : any[] = [];
 
   constructor(
     private questionService: ShuffleQuestionService,
-    private clusterService : ClusterStudentsService
+    private clusterService : ClusterStudentsService,
+    private studentService: StudentService,
+    private handleErrorService: HandleErrorService
   ) {}
 
   ngOnInit(): void {
@@ -31,10 +36,11 @@ export class QuestionsComponent  implements OnInit{
     this.initializeCuster();
   }
   initializeCuster():void{
-    this.clusterService.getStudent(this.idStudent).subscribe(
+    this.studentService.getStudent(this.idStudent).subscribe(
       (student: GetStudentResponse) => {
         if (student.cluster) {
           this.cluster = student.cluster;
+          this.getStudentsSameClusterAndDormitory();
         }
       },
       error => {
@@ -63,10 +69,20 @@ export class QuestionsComponent  implements OnInit{
     this.questions = this.questionService.getPrevBatch();
   }
 
-  submitResponse(questionKey: string, value: number): void {
-   // this.questionService.saveResponse(questionKey, value);
-  }
+  getStudentsSameClusterAndDormitory():void
+  {
+    this.clusterService.getStudentsSameClusterAndDormitory(this.idStudent).subscribe(
+      (studentsResponse: GetStudentResponse[]) => {
+        if (studentsResponse) {
+          this.students = studentsResponse;
+        }
+      },
+      error => {
+        this.handleErrorService.handleError(error);
+      }
+    );
 
+  }
   finalizeResponses(): void {
     this.questionService.prepareResponses();
     const clusterOcean: ClusterOceanRequest = {
@@ -92,7 +108,7 @@ export class QuestionsComponent  implements OnInit{
           this.cluster = predictionClusterResponse.cluster;
         },
         error => {
-          console.log("Error");
+          this.handleErrorService.handleError(error);
         }
       );
 

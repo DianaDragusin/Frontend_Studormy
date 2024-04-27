@@ -11,6 +11,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatStepperModule} from '@angular/material/stepper';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import{MatSliderModule} from "@angular/material/slider";
+import {MatDialogModule} from "@angular/material/dialog";
+import { MatSidenavModule} from "@angular/material/sidenav";
 
 
 const materialModules = [
@@ -26,8 +28,8 @@ const materialModules = [
   MatStepperModule,
   FormsModule,
   ReactiveFormsModule,
-
-
+  MatDialogModule,
+  MatSidenavModule
 
 
 ];

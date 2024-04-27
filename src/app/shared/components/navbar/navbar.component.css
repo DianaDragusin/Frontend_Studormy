@@ -2,3 +2,8 @@ mat-toolbar-row{
   display: flex;
   justify-content: space-between;
 }
+
+mat-toolbar img {
+  border-radius: 50%; /* To make it circular like typical user icons, if desired */
+  object-fit: cover; /* This will cover the area without stretching the image */
+}

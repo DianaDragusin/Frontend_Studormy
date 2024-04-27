@@ -3,7 +3,6 @@ import {Dormitory} from "../../admin/models/dormitory";
 export interface GetStudentResponse {
      id : number;
      email: string;
-     password :string;
      registrationNumber: number;
      dormitory: Dormitory;
      firstname: string;

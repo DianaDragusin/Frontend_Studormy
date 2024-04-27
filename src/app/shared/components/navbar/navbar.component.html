@@ -1,9 +1,15 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <button mat-icon-button>
-      <mat-icon>account_circle</mat-icon>
+    <button (click)="openEditModal()"  mat-icon-button>
+      <div *ngIf="image== ''">
+      <mat-icon >account_circle</mat-icon>
+      </div>
+      <div *ngIf="image !== ''">
+        <img  [src]="image" />
+      </div>
+
     </button>
-    <button mat-icon-button>
+    <button (click)="logOut()" mat-icon-button>
       <mat-icon>input</mat-icon>
     </button>
 

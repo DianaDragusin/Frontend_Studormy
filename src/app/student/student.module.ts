@@ -5,6 +5,11 @@ import {StudentRoutingModule} from "./student-routing.module";
 import { QuestionsComponent } from './components/questions/questions.component';
 import {AngularMaterialModule} from "../shared/angular-material.module";
 import { QuestionComponent } from './components/question/question.component';
+import { PersonCardComponent } from './components/person-card/person-card.component';
+import {SharedModule} from "../shared/shared.module";
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { GroupsComponent } from './components/groups/groups.component';
+import {MatSidenavModule} from "@angular/material/sidenav";
 
 
 
@@ -12,12 +17,16 @@ import { QuestionComponent } from './components/question/question.component';
   declarations: [
     ProfileComponent,
     QuestionsComponent,
-    QuestionComponent
+    QuestionComponent,
+    PersonCardComponent,
+    EditProfileComponent,
+    GroupsComponent
   ],
   imports: [
     CommonModule,
     StudentRoutingModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    SharedModule
   ]
 })
 export class StudentModule { }
