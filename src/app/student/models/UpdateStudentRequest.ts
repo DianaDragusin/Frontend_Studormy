@@ -3,4 +3,5 @@ export interface UpdateStudentRequest {
      firstname: string;
      lastname: string;
      birthday : Date;
+     avatarImage: string;
 }

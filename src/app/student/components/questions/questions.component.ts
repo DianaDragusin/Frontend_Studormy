@@ -44,7 +44,7 @@ export class QuestionsComponent  implements OnInit{
         }
       },
       error => {
-        console.error('Error retrieving student:', error);
+        this.handleErrorService.handleError(error);
       }
     );
 
@@ -113,5 +113,9 @@ export class QuestionsComponent  implements OnInit{
       );
 
   }
+  goToGroups(): void{
+
+  }
+
 
 }

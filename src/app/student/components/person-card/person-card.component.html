@@ -1,9 +1,12 @@
 <mat-card class="example-card">
-  <img mat-card-image src="assets/av1.PNG" alt="Avatar">
+  <img mat-card-image *ngIf="student?.avatarImage" [src]="student?.avatarImage" />
+  <img mat-card-image *ngIf="!student?.avatarImage" src="assets/noprofile.PNG" />
+
   <mat-card-content>
   </mat-card-content>
   <div class="text-box">
     <p class="centered">{{student?.firstname}} {{student?.lastname}}</p>
+    <p class="centered">{{student?.email}}</p>
   </div>
 
   <mat-card-actions>

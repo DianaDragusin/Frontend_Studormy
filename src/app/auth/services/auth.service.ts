@@ -12,7 +12,7 @@ import {LoginRequest} from "../models/loginRequest";
 export class AuthService {
   url: string = 'http://localhost:8080/auth/';
   private isLoggedIn: boolean = sessionStorage.getItem('isLoggedIn') === 'true';
-  private userId: number | null = sessionStorage.getItem('userId') ? parseInt(sessionStorage.getItem('userId')!) : null;
+  private userId: number  = sessionStorage.getItem('userId') ? parseInt(sessionStorage.getItem('userId')!) : -1;
 
 
   constructor(private http: HttpClient) {}
@@ -36,7 +36,7 @@ export class AuthService {
 
   logout(): void {
     this.isLoggedIn = false;
-    this.userId = null;
+    this.userId = -1;
     sessionStorage.removeItem('isLoggedIn');
     sessionStorage.removeItem('userId');
   }
@@ -49,8 +49,7 @@ export class AuthService {
   }
 
   // If you need to get the userId from other parts of your application
-  getUserId(): number | null {
+  getUserId(): number  {
     return this.userId;
-
   }
 }

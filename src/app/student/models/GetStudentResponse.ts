@@ -14,4 +14,5 @@ export interface GetStudentResponse {
      agreeableness_score: number;
      conscientiousness_score: number;
      cluster: number;
+     avatarImage: string;
 }

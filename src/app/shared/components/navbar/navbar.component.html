@@ -1,11 +1,11 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <button (click)="openEditModal()"  mat-icon-button>
-      <div *ngIf="image== ''">
+      <div *ngIf="studentData?.avatarImage== null">
       <mat-icon >account_circle</mat-icon>
       </div>
-      <div *ngIf="image !== ''">
-        <img  [src]="image" />
+      <div *ngIf="studentData?.avatarImage !== null">
+        <img  [src]="studentData?.avatarImage" />
       </div>
 
     </button>
