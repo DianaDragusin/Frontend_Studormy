@@ -10,6 +10,7 @@ import {SharedModule} from "../shared/shared.module";
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { GroupsComponent } from './components/groups/groups.component';
 import {MatSidenavModule} from "@angular/material/sidenav";
+import { GroupMembersComponent } from './components/group-members/group-members.component';
 
 
 
@@ -20,7 +21,8 @@ import {MatSidenavModule} from "@angular/material/sidenav";
     QuestionComponent,
     PersonCardComponent,
     EditProfileComponent,
-    GroupsComponent
+    GroupsComponent,
+    GroupMembersComponent
   ],
   imports: [
     CommonModule,

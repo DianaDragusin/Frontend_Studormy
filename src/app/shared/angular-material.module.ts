@@ -13,6 +13,9 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import{MatSliderModule} from "@angular/material/slider";
 import {MatDialogModule} from "@angular/material/dialog";
 import { MatSidenavModule} from "@angular/material/sidenav";
+import {MatListModule} from "@angular/material/list";
+import {MatGridListModule} from "@angular/material/grid-list";
+import {MatSelectModule} from "@angular/material/select";
 
 
 const materialModules = [
@@ -29,7 +32,10 @@ const materialModules = [
   FormsModule,
   ReactiveFormsModule,
   MatDialogModule,
-  MatSidenavModule
+  MatSidenavModule,
+  MatListModule,
+  MatGridListModule,
+  MatSelectModule
 
 
 ];

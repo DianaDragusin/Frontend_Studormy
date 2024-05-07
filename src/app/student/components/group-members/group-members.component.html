@@ -1,0 +1,9 @@
+<h2 mat-dialog-title>Group Members</h2>
+<mat-dialog-content>
+  <mat-list>
+    <mat-list-item *ngFor="let member of data.members">{{ member.firstname }} {{member.lastname}} {{member.email}}</mat-list-item>
+  </mat-list>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onClose()">Close</button>
+</mat-dialog-actions>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../../auth/services/auth.service";
 import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
@@ -6,51 +6,60 @@ import {EditProfileComponent} from "../../../student/components/edit-profile/edi
 import {ClusterStudentsService} from "../../../student/services/cluster-students.service";
 import {StudentService} from "../../../student/services/student.service";
 import {UpdateStudentRequest} from "../../../student/models/UpdateStudentRequest";
-import {catchError, of} from "rxjs";
+import {catchError, Observable, of} from "rxjs";
 import {HandleErrorService} from "../../../auth/services/handle-error.service";
+import {GetStudentResponse} from "../../../student/models/GetStudentResponse";
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit{
   flagClosed = false;
-  image = "";
-  profileId =  0;
+  avatarImage = "";
+  profileId: number ;
+  studentData$: Observable<GetStudentResponse> ;
+  studentData : GetStudentResponse | undefined;
   constructor(
     private auth: AuthService,
     private router: Router,
     public dialog: MatDialog,
     private studentService: StudentService,
     private handleErrorService: HandleErrorService,
-  ) {}
+  ) {
+    this.profileId =  this.auth.getUserId();
+    this.studentData$ = this.studentService.getStudent(this.profileId);
+
+  }
+  ngOnInit() {
+    this.studentData$.subscribe((studentGetResponse) => {
+      this.studentData = studentGetResponse;
+    });
+  }
+
   logOut():void{
     this.auth.logout();
     this.router.navigate(['/landing']);
   }
   openEditModal(): void {
-    let id  = this.auth.getUserId();
-    if (id !== null)
+    if (this.profileId !== null)
     {
-      this.profileId = id;
-      let studentData$ = this.studentService.getStudent(id);
-       studentData$.subscribe((studentGetResponse) => {
-         const dialogRef = this.dialog.open(EditProfileComponent, {
+      const dialogRef = this.dialog.open(EditProfileComponent, {
            width: '300px',
            height: 'auto',
-           data: { student: studentGetResponse}
+           data: { student: this.studentData}
          });
          dialogRef.afterClosed().subscribe(result => {
            this.flagClosed = true;
-           if (result)
-             this.image = result.avatar;
-           const updateStudentRequest: UpdateStudentRequest = {
-             firstname: result.firstname,
-             lastname: result.lastname,
-             birthday: result.birthday,
-             email: result.email,
-           };
+             const updateStudentRequest: UpdateStudentRequest = {
+               firstname: result.firstname,
+               lastname: result.lastname,
+               birthday: result.birthday,
+               email: result.email,
+               avatarImage: result.avatarImage,
+             };
+
            this.studentService.updateStudent(this.profileId, updateStudentRequest)
              .pipe(
                catchError(error => {
@@ -66,11 +75,10 @@ export class NavbarComponent {
                }
              });
          });
-      });
-
 
 
     }
+
 
   }
 }

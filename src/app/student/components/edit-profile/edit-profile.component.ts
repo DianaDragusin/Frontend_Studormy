@@ -23,8 +23,6 @@ export class EditProfileComponent {
     'assets/av12.PNG',
     'assets/av13.PNG',
     'assets/av14.PNG',
-
-    // More avatar paths
   ];
 
   studentInfoForm: FormGroup;
@@ -42,6 +40,12 @@ export class EditProfileComponent {
       email: [this.data.student.email, [Validators.required, Validators.email]],
       registration_number: [this.data.student.registrationNumber]
     });
+
+    // Set current avatar index if avatar URL was previously set for a user
+    const avatarUrl = this.data.student.avatarImage;
+    if (avatarUrl && this.avatars.includes(avatarUrl)) {
+      this.currentAvatarIndex = this.avatars.indexOf(avatarUrl);
+    }
   }
 
   onNoClick(): void {
@@ -51,7 +55,7 @@ export class EditProfileComponent {
   save(): void {
     const result = {
       ...this.studentInfoForm.value,
-      avatar: this.avatars[this.currentAvatarIndex]
+      avatarImage: this.avatars[this.currentAvatarIndex]
     };
 
     this.dialogRef.close(result);
