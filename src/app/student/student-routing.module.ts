@@ -5,6 +5,8 @@ import {SignupComponent} from "../auth/signup/signup.component";
 import {NgModule} from "@angular/core";
 import {ProfileComponent} from "./components/profile/profile.component";
 import {GroupsComponent} from "./components/groups/groups.component";
+import {SeeRoomsAvailableComponent} from "./components/see-rooms-available/see-rooms-available.component";
+import {ApplyForRoomsComponent} from "./components/apply-for-rooms/apply-for-rooms.component";
 
 const routes: Routes = [
   {
@@ -14,6 +16,14 @@ const routes: Routes = [
   {
     path: 'student-groups',
     component: GroupsComponent,
+  },
+  {
+    path: 'see-rooms-available',
+    component: SeeRoomsAvailableComponent,
+  },
+  {
+    path: 'apply-for-rooms',
+    component: ApplyForRoomsComponent,
   },
 
 ];

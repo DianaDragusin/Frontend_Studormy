@@ -16,6 +16,12 @@ import { MatSidenavModule} from "@angular/material/sidenav";
 import {MatListModule} from "@angular/material/list";
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatSelectModule} from "@angular/material/select";
+import {MatRadioModule} from "@angular/material/radio";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatTableModule} from "@angular/material/table";
+import {MatSortModule} from "@angular/material/sort";
+import {MatDividerModule} from "@angular/material/divider";
+import {MatRippleModule} from "@angular/material/core";
 
 
 const materialModules = [
@@ -35,7 +41,14 @@ const materialModules = [
   MatSidenavModule,
   MatListModule,
   MatGridListModule,
-  MatSelectModule
+  MatSelectModule,
+  MatRadioModule,
+  MatPaginatorModule,
+  MatTableModule,
+  MatSortModule,
+  MatDividerModule,
+  MatRippleModule
+
 
 
 ];

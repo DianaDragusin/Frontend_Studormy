@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-  <mat-toolbar-row>
+  <mat-toolbar-row *ngIf='userRole == "student"'>
     <button (click)="openEditModal()"  mat-icon-button>
       <div *ngIf="studentData?.avatarImage== null">
       <mat-icon >account_circle</mat-icon>
@@ -7,8 +7,24 @@
       <div *ngIf="studentData?.avatarImage !== null">
         <img  [src]="studentData?.avatarImage" />
       </div>
-
     </button>
+    <button mat-raised-button color="primary"  [routerLink]="['/see-rooms-available']" [queryParams]="{ idStudent: studentData?.id }" >Available Rooms</button>
+    <button mat-raised-button color="primary"  [routerLink]="['/student-groups']" [queryParams]="{ idStudent: studentData?.id }" >My Groups</button>
+    <button mat-raised-button color="primary"  [routerLink]="['/apply-for-rooms']" [queryParams]="{ idStudent: studentData?.id }" >Apply For Room</button>
+
+    <button (click)="logOut()" mat-icon-button>
+      <mat-icon>input</mat-icon>
+    </button>
+
+  </mat-toolbar-row>
+  <mat-toolbar-row *ngIf='userRole == "admin"' >
+    <button mat-icon-button>
+      <div >
+        <mat-icon >account_circle</mat-icon>
+      </div>
+    </button>
+    <button mat-raised-button color="primary"  [routerLink]="['/add-rooms']" [queryParams]="{ idAdmin: adminData?.id }" >Add Rooms</button>
+    <button mat-raised-button color="primary"  [routerLink]="['/room-allocation-settings']" [queryParams]="{ idAdmin: adminData?.id }" >Room Allocation Settings</button>
     <button (click)="logOut()" mat-icon-button>
       <mat-icon>input</mat-icon>
     </button>

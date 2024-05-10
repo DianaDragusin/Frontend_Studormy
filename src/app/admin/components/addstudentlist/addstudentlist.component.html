@@ -1,6 +1,7 @@
+<div *ngIf="!finished">
 
 <mat-stepper [linear]=true  labelPosition="bottom"  [orientation]="(stepperOrientation | async)!" #stepper >
-  <mat-step [stepControl]="firstFormGroup" state="home" >
+  <mat-step [stepControl]="firstFormGroup" state="home"  *ngIf="!admin?.dormitory?.dormitoryId">
     <form [formGroup]="firstFormGroup" >
       <ng-template matStepLabel>Fill out the name of your dormitory</ng-template>
       <div class="centered-wrapper">
@@ -14,7 +15,7 @@
       </div>
     </form>
   </mat-step>
-  <mat-step label="Upload a file" state="download">
+  <mat-step label="Upload a file with students " state="download">
     <div class="centered-wrapper">
     <app-uploadfile [idAdmin]="loginResponse.id" #uploadFile></app-uploadfile>
     </div>
@@ -30,7 +31,7 @@
     </div>
     <div class="centered-wrapper">
       <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
+      <button mat-button (click)="finishProcess()">Finish</button>
     </div>
   </mat-step>
   <ng-template matStepperIcon="home">
@@ -43,4 +44,7 @@
     <mat-icon>rocketlaunch</mat-icon>
   </ng-template>
 </mat-stepper>
-
+</div>
+<div *ngIf="finished">
+  <h3>You have finished setting up your admin account</h3>
+</div>

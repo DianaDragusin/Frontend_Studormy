@@ -1,0 +1,18 @@
+.settings-container {
+  padding: 20px;
+  margin: 5% 30%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.person-item {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.person-icon, .icon {
+  margin-left: 4px;
+  vertical-align: middle;
+}

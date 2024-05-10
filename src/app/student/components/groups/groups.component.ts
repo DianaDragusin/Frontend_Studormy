@@ -43,7 +43,7 @@ export class GroupsComponent implements OnInit {
   showGroupMembers(studentsInAGroup: LessInfoStudent[]): void {
 
     this.dialog.open(GroupMembersComponent, {
-      width: '400px',
+      width: '40%',
       data: { members: studentsInAGroup }
     });
   }

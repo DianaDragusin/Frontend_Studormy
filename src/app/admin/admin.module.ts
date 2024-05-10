@@ -4,6 +4,8 @@ import { AddstudentlistComponent } from './components/addstudentlist/addstudentl
 import {AdminRoutingModule} from "./admin-routing.module";
 import { UploadfileComponent } from './components/uploadfile/uploadfile.component';
 import {AngularMaterialModule} from "../shared/angular-material.module";
+import { AddRoomsComponent } from './components/add-rooms/add-rooms.component';
+import { RoomAllocationSettingsComponent } from './components/room-allocation-settings/room-allocation-settings.component';
 
 
 
@@ -11,7 +13,9 @@ import {AngularMaterialModule} from "../shared/angular-material.module";
 @NgModule({
   declarations: [
     AddstudentlistComponent,
-    UploadfileComponent
+    UploadfileComponent,
+    AddRoomsComponent,
+    RoomAllocationSettingsComponent
   ],
   imports: [
     CommonModule,

@@ -11,6 +11,9 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
 import { GroupsComponent } from './components/groups/groups.component';
 import {MatSidenavModule} from "@angular/material/sidenav";
 import { GroupMembersComponent } from './components/group-members/group-members.component';
+import { SeeRoomsAvailableComponent } from './components/see-rooms-available/see-rooms-available.component';
+import { ApplyForRoomsComponent } from './components/apply-for-rooms/apply-for-rooms.component';
+import { SelectGroupComponent } from './components/select-group/select-group.component';
 
 
 
@@ -22,7 +25,10 @@ import { GroupMembersComponent } from './components/group-members/group-members.
     PersonCardComponent,
     EditProfileComponent,
     GroupsComponent,
-    GroupMembersComponent
+    GroupMembersComponent,
+    SeeRoomsAvailableComponent,
+    ApplyForRoomsComponent,
+    SelectGroupComponent
   ],
   imports: [
     CommonModule,
