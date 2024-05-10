@@ -1,0 +1,32 @@
+.settings-container {
+  padding: 20px;
+  margin: 5% 15%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.settings-container h1 {
+  color: #333;
+}
+/* Flex container for radio buttons */
+.process-item {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.check-icon, .icon {
+  margin-left: 4px;
+  vertical-align: middle;
+  color : green;
+}
+.close{
+  color:red;
+}
+
+.mat-icon { /* Specific adjustments for Material icons if necessary */
+  display: inline-flex; /* Helps with precise alignment in some cases */
+  align-items: center; /* Center the icon inside its flex container */
+  justify-content: center;
+}

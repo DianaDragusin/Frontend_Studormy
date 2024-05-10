@@ -1,0 +1,49 @@
+<mat-card class="settings-container">
+  <mat-card-header>
+    <mat-card-title><h1>Room Allocation Settings</h1></mat-card-title>
+    <mat-card-subtitle> The Room Allocation process allows students to view rooms in a table along with their capacities.
+      Students can apply for a room with a pre-formed group if the group's size matches the room's capacity.
+      This process should be started only after all rooms have been added by the admin and should allow some days
+      for students to form groups. After starting, it should end after a designated period, at which point an algorithm
+      will automatically place remaining students into rooms.</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-actions >
+    <mat-radio-group  aria-label="Select an option" [(ngModel)]="allocationProcessStatus" (ngModelChange)="setAllocationProcessStatus($event)">
+      <mat-radio-button value="1">Start Room Allocation Process</mat-radio-button>
+      <mat-radio-button value="2">End Room Allocation Process</mat-radio-button>
+    </mat-radio-group>
+  </mat-card-actions>
+</mat-card>
+
+<mat-card class="settings-container">
+  <mat-card-header>
+    <mat-card-title>
+      <h1>Status Room Allocation Process</h1>
+      <!-- Icon for overall process status -->
+    </mat-card-title>
+
+    <!-- Subtitles for different states -->
+    <mat-card-subtitle class="process-item">
+      Room Allocation Process Started:
+      <mat-icon class="check-icon" *ngIf="getSettingResponse?.roomAllocationStarted; else notStarted">check</mat-icon>
+      <ng-template #notStarted><mat-icon class="close">close</mat-icon></ng-template>
+    </mat-card-subtitle>
+
+    <mat-card-subtitle class="process-item">
+      Room Allocation Process Stopped:
+      <mat-icon class="check-icon" *ngIf="getSettingResponse?.roomAllocationStopped; else notStopped">check</mat-icon>
+      <ng-template #notStopped><mat-icon class="close">close</mat-icon></ng-template>
+    </mat-card-subtitle>
+
+    <mat-card-subtitle class="process-item">
+      Starting the process of allocating the rest of the students to a room:
+      <mat-icon  class="check-icon"  *ngIf="getSettingResponse?.roomAllocationStopped; else notProcessingRest">check</mat-icon>
+      <ng-template #notProcessingRest><mat-icon class="close">close</mat-icon></ng-template>
+    </mat-card-subtitle>
+
+  </mat-card-header>
+</mat-card>
+
+
+
+

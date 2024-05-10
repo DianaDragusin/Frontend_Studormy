@@ -1,0 +1,46 @@
+
+<!-- Main container to hold both cards -->
+<div class="container">
+  <!-- Existing card for the form -->
+
+  <div class="card">
+    <div class="card-header">
+      <mat-card-title>Specify the rooms you need for your dormitory</mat-card-title>
+    </div>
+    <div class="card-body">
+      <div>
+        <label>Select the size of the room :</label>
+        <mat-form-field appearance="outline" class="custom-select">
+          <mat-label>Max people in a room</mat-label>
+          <input matInput type="number" [(ngModel)]="maxPeople" placeholder="Max people in a room" min="0" step="1">
+        </mat-form-field>
+      </div>
+      <div>
+        <label>Multiply the rooms by this     : </label>
+        <mat-form-field appearance="outline" class="custom-select">
+          <mat-label>Category Room X Nr</mat-label>
+          <input matInput type="number" [(ngModel)]="selectedRoomCount" placeholder="Category Room X Nr" min="0" step="1">
+        </mat-form-field>
+      </div>
+      <div class="footer">
+        <button mat-raised-button color="primary" (click)="addRooms()">Add Rooms</button>
+      </div>
+    </div>
+  </div>
+  <!-- New card for displaying added rooms -->
+  <div class="card" *ngIf="addRoomButtonPressed">
+    <div class="card-header">
+      <mat-card-title>Added Rooms</mat-card-title>
+    </div>
+    <div class="card-body">
+      <ul>
+        <li *ngFor="let room of rooms" class="room-item">
+          Room Nr {{ room.roomNumber }} : capacity {{ room.maxPeopleNumber }} x
+          <mat-icon class="person-icon">perm_identity</mat-icon>
+          <i class="person icon"></i>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+

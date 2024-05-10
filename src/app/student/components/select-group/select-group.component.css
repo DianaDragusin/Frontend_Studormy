@@ -1,0 +1,8 @@
+a[mat-list-item]:hover {
+  background-color: #e0e0e0; /* Change color as needed */
+  cursor: pointer;
+}
+.ripple-container {
+  position: relative;
+  overflow: hidden;
+}

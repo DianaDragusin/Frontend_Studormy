@@ -13,7 +13,7 @@ export class AuthService {
   url: string = 'http://localhost:8080/auth/';
   private isLoggedIn: boolean = sessionStorage.getItem('isLoggedIn') === 'true';
   private userId: number  = sessionStorage.getItem('userId') ? parseInt(sessionStorage.getItem('userId')!) : -1;
-
+  private role: string  = '' ;
 
   constructor(private http: HttpClient) {}
 
@@ -22,14 +22,16 @@ export class AuthService {
       email: loginModel.email,
       password: loginModel.password,
     };
-    let loginEndpoint = loginModel.role === UserRole.Student ? 'student' : 'admin';
-    return this.http.post<LoginResponse>(this.url + 'login/' + loginEndpoint, loginRequest)
+    let loginRole = loginModel.role === UserRole.Student ? 'student' : 'admin';
+    return this.http.post<LoginResponse>(this.url + 'login/' + loginRole, loginRequest)
       .pipe(
         tap((response) => {
           this.isLoggedIn = true;
           this.userId = response.id;
+          this.role = loginRole;
           sessionStorage.setItem('isLoggedIn', 'true');
-          sessionStorage.setItem('userId',response.id.toString() );
+          sessionStorage.setItem('userId',response.id.toString());
+          sessionStorage.setItem('role',loginRole);
         })
       );
   }
@@ -37,19 +39,26 @@ export class AuthService {
   logout(): void {
     this.isLoggedIn = false;
     this.userId = -1;
-    sessionStorage.removeItem('isLoggedIn');
-    sessionStorage.removeItem('userId');
+    this.role = '';
+    sessionStorage.clear();
   }
 
   isAuthenticated(): boolean {
-    // Optionally update the isLoggedIn state based on the session storage
-    // in case it gets out of sync, for example when session storage is cleared manually
     this.isLoggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
     return this.isLoggedIn;
   }
 
-  // If you need to get the userId from other parts of your application
-  getUserId(): number  {
+  getUserId(): number {
+    if (this.userId === -1) {
+      this.userId = parseInt(sessionStorage.getItem('userId') || '-1', 10);
+    }
     return this.userId;
+  }
+
+  getUserRole(): string {
+    if (!this.role) {
+      this.role = sessionStorage.getItem('role') || '';
+    }
+    return this.role;
   }
 }

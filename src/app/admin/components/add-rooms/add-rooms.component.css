@@ -1,0 +1,57 @@
+/* CSS to make the card layout split view */
+.container {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  margin: 5%;
+}
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 45%; /* Adjusted width */
+  padding: 10px;
+}
+
+.card-header {
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.card-body {
+  padding: 5% 2%;
+}
+
+button {
+  margin-top: 10px;
+}
+
+.custom-select {
+  font-size: 0.8em;
+}
+.room-item {
+  display: flex;
+  align-items: center; /* Ensures vertical center alignment */
+  font-size: 16px; /* Example font size */
+  line-height: 1.2; /* Adjust line-height to improve alignment */
+}
+
+.person-icon, .icon {
+  margin-left: 4px; /* Space between text and icon */
+  vertical-align: middle; /* Aligns icons with the baseline of the text */
+}
+
+.mat-icon { /* Specific adjustments for Material icons if necessary */
+  display: inline-flex; /* Helps with precise alignment in some cases */
+  align-items: center; /* Center the icon inside its flex container */
+  justify-content: center;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+}
+label{
+  margin : 3%
+}

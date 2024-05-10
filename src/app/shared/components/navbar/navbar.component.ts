@@ -9,6 +9,8 @@ import {UpdateStudentRequest} from "../../../student/models/UpdateStudentRequest
 import {catchError, Observable, of} from "rxjs";
 import {HandleErrorService} from "../../../auth/services/handle-error.service";
 import {GetStudentResponse} from "../../../student/models/GetStudentResponse";
+import {AdminService} from "../../../admin/services/admin.service";
+import {GetAdminResponse} from "../../../admin/models/adminResponse";
 
 @Component({
   selector: 'app-navbar',
@@ -18,23 +20,50 @@ import {GetStudentResponse} from "../../../student/models/GetStudentResponse";
 export class NavbarComponent implements OnInit{
   flagClosed = false;
   avatarImage = "";
-  profileId: number ;
-  studentData$: Observable<GetStudentResponse> ;
+  profileId: number  = -1;
   studentData : GetStudentResponse | undefined;
+  adminData : GetAdminResponse | undefined;
+  userRole : string = '';
   constructor(
     private auth: AuthService,
     private router: Router,
     public dialog: MatDialog,
     private studentService: StudentService,
-    private handleErrorService: HandleErrorService,
-  ) {
-    this.profileId =  this.auth.getUserId();
-    this.studentData$ = this.studentService.getStudent(this.profileId);
-
-  }
+    private adminService : AdminService,
+    private handleErrorService: HandleErrorService
+  ) {}
   ngOnInit() {
-    this.studentData$.subscribe((studentGetResponse) => {
-      this.studentData = studentGetResponse;
+    this.initializeData();
+  }
+  private initializeData() {
+    this.profileId = this.auth.getUserId();
+    this.userRole = this.auth.getUserRole();
+
+    if (this.userRole == 'student') {
+      this.getStudentData();
+    }
+    else if (this.userRole == 'admin') {
+      this.getAdminData();
+    }
+  }
+  getStudentData(){
+    this.studentService.getStudent(this.profileId).subscribe({
+      next: (studentResponse) => {
+        this.studentData = studentResponse;
+      },
+      error: (err) => {
+        this.handleErrorService.handleError(err);
+      }
+    });
+  }
+  getAdminData(){
+    this.adminService.getAdmin(this.profileId).subscribe({
+      next: (adminResponse) => {
+        this.adminData = adminResponse;
+      },
+      error: (err) => {
+        this.handleErrorService.handleError(err);
+      }
     });
   }
 
@@ -69,16 +98,13 @@ export class NavbarComponent implements OnInit{
              )
              .subscribe(updatedStudent => {
                if (updatedStudent) {
+                 this.studentData = updatedStudent;
                  this.handleErrorService.handleSuccess("Student has been updated successfully");
                  console.log('Student information updated successfully:', updatedStudent);
-                 // Additional actions if needed
                }
              });
          });
-
-
     }
-
 
   }
 }

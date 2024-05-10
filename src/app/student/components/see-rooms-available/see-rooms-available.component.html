@@ -1,0 +1,18 @@
+<mat-card class="settings-container">
+  <mat-card-header>
+    <mat-card-title>
+      <h1>Available rooms</h1>
+      <!-- Icon for overall process status -->
+    </mat-card-title>
+    <!-- Subtitles for different states -->
+    <mat-card-subtitle *ngFor="let entry of summary | keyvalue" class="person-item">
+      {{ entry.value }} Rooms of capacity {{ entry.key }} x
+      <mat-icon class="person-icon">perm_identity</mat-icon>
+    </mat-card-subtitle>
+
+  </mat-card-header>
+</mat-card>
+
+
+
+

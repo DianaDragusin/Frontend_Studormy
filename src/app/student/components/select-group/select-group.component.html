@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>Choose a group to apply for the room with</h2>
+<mat-dialog-content>
+  <mat-list>
+    <ng-container *ngFor="let group of data.groups">
+      <a mat-list-item (click)="selectGroup(group)">
+        <div matRipple class="ripple-container" style="width: 100%;">
+          <h4 mat-line>{{ group.name }} with {{group.memberNumber}} members</h4>
+        </div>
+      </a>
+      <mat-divider></mat-divider>
+    </ng-container>
+  </mat-list>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onNoClick()">Close</button>
+</mat-dialog-actions>
