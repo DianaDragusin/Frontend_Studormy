@@ -18,6 +18,9 @@ export class StudentService {
   getStudent(studentId: number): Observable<GetStudentResponse>{
     return this.http.get<GetStudentResponse>(`${this.url}/` + studentId );
   }
+  getStudentHasRoom(studentId: number): Observable<Boolean>{
+    return this.http.get<Boolean>(`${this.url}/hasRoom/` + studentId );
+  }
   getAllStudentsWithSameDormitory(studentId: number): Observable<GetStudentResponse[]>{
     return this.http.get<GetStudentResponse[]>(`${this.url}/no/` + studentId );
   }

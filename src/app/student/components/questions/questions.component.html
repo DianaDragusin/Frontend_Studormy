@@ -1,29 +1,25 @@
-
 <div class="card-container">
-  <div *ngIf="cluster ===-1">
+  <div *ngIf="cluster === -1">
     <mat-card class="wide-card">
-        <h2>In order for us to give you the best matches we first have to know some things about you</h2>
+      <h2>In order for us to give you the best matches we first have to know some things about you</h2>
       <div *ngFor="let question of questions">
-        <app-question [question]="question.question" [response]="responses[question.question]"  (responseChange)="onResponseChange($event)" ></app-question>
+        <app-question [question]="question.question" [response]="responses[question.question]" (responseChange)="onResponseChange($event)"></app-question>
       </div>
-
       <div class="button-row">
-        <button mat-raised-button  class="buttons" [disabled]="!flagPrev"  (click)="loadPrevBatch()" >Back</button>
-        <button mat-raised-button  class="buttons" [disabled]="!flagNext" (click)="loadNextBatch()" >Next</button>
+        <button mat-raised-button class="buttons" [disabled]="!flagPrev" (click)="loadPrevBatch()">Back</button>
+        <button mat-raised-button class="buttons" [disabled]="!flagNext" (click)="loadNextBatch()">Next</button>
       </div>
       <button mat-raised-button color="primary" (click)="finalizeResponses()">Submit All</button>
     </mat-card>
   </div>
-  <div *ngIf="cluster !== -1" >
+  <div *ngIf="cluster !== -1">
     <mat-card class="wide-card">
-        <h2>Congratulations you are part of cluster {{cluster}}. Here are some suggestions of people like you, in your dorm</h2>
+      <h2>Congratulations you are part of cluster {{cluster}}. Here are some suggestions of people like you, in your dorm</h2>
     </mat-card>
-    <div *ngFor="let student of students">
-    <app-person-card [student]="student"></app-person-card>
+    <div class="student-cards-container">
+       <div *ngFor="let student of students">
+          <app-person-card [student]="student"></app-person-card>
+      </div>
+    </div>
   </div>
-
-
 </div>
-
-</div>
-

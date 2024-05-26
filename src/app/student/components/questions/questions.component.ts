@@ -96,11 +96,6 @@ export class QuestionsComponent  implements OnInit{
     this.clusterService.sendClusters(this.idStudent, clusterOcean)
       .pipe(
         switchMap(clusterOceanResponse => {
-          console.log(clusterOceanResponse.openness_score);
-          console.log(clusterOceanResponse.conscientiousness_score);
-          console.log(clusterOceanResponse.extroversion_score);
-          console.log(clusterOceanResponse.agreeableness_score);
-          console.log(clusterOceanResponse.neuroticism_score);
           return this.clusterService.predictCluster(this.idStudent, clusterOceanResponse);
         })
       )

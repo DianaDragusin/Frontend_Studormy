@@ -16,6 +16,8 @@ import {GroupService} from "../../services/group.service";
 import {GroupResponse} from "../../models/group/GroupResponse";
 import {StudentGroupResponse} from "../../models/group/StudentGroupResponse";
 import {LessInfoGroup} from "../../models/lessInfoGroup/LessInfoGroup";
+import {StudentResponse} from "../../../admin/models/studentResponse";
+import {group} from "@angular/animations";
 
 @Component({
   selector: 'app-apply-for-rooms',
@@ -28,6 +30,7 @@ export class ApplyForRoomsComponent implements AfterViewInit, OnInit {
   dataSource = new MatTableDataSource<AddRoomResponse>([]);
   settingResponse: GetSettingsResponse | undefined;
   groups : LessInfoGroup[] = [];
+  hasAppliedForARoom :Boolean = false;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -45,18 +48,30 @@ export class ApplyForRoomsComponent implements AfterViewInit, OnInit {
 
   ngOnInit() {
     this.initDormitoryData();
+    this.hasAppliedForARoom = false;
   }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
+  hasAppliedForARoomAlready(studentId: number){
+    this.studentService.getStudentHasRoom(studentId).subscribe({
+      next: (hasRoom) => {
+        this.hasAppliedForARoom = hasRoom
+      },
+      error: (err) => this.handleErrorService.handleError(err)
+    });
 
+  }
   checkSettings(adminId: number) {
     this.settingsService.getSettings(adminId).subscribe({
       next: (getSettingsResponse) => {
         this.settingResponse = getSettingsResponse;
-        if (getSettingsResponse.roomAllocationStarted && !getSettingsResponse.roomAllocationStopped   && this.adminId == -1) {
+        if (getSettingsResponse.roomAllocationStarted &&
+          !getSettingsResponse.roomAllocationStopped   &&
+          ! this.hasAppliedForARoom
+        ) {
           this.displayedColumns = ['number', 'capacity', 'apply'];
         } else {
           this.displayedColumns = ['number', 'capacity'];
@@ -65,6 +80,7 @@ export class ApplyForRoomsComponent implements AfterViewInit, OnInit {
       error: (err) => this.handleErrorService.handleError(err)
     });
   }
+
 
   initDormitoryData() {
     if (this.authService.getUserRole() === 'admin') {
@@ -79,9 +95,10 @@ export class ApplyForRoomsComponent implements AfterViewInit, OnInit {
     } else if (this.authService.getUserRole() === 'student') {
       this.studentService.getStudent(this.authService.getUserId()).subscribe({
         next: (studResponse) => {
+          this.hasAppliedForARoomAlready(studResponse.id);
           this.initRoomData(studResponse.dormitory.dormitoryId);
-          this.getAdminByDormitory(studResponse.dormitory.dormitoryId);
           this.initGroups(studResponse.id);
+          this.getAdminByDormitory(studResponse.dormitory.dormitoryId);
         },
         error: (err) => this.handleErrorService.handleError(err)
       });
@@ -114,6 +131,7 @@ export class ApplyForRoomsComponent implements AfterViewInit, OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
   initGroups(studentId: number){
     this.groupService.getStudentGroups(studentId).subscribe({
       next: (getGroupsResponse) => {
@@ -122,14 +140,24 @@ export class ApplyForRoomsComponent implements AfterViewInit, OnInit {
       error: (err) => this.handleErrorService.handleError(err)
     });
   }
+  filterGroupsByMaxPeopleNr(groups: LessInfoGroup[], targetMaxPeopleNr: number): LessInfoGroup[] {
+    return groups.filter(group => group.memberNumber === targetMaxPeopleNr);
+  }
   applyForRoom(row: any) {
     const dialogRef = this.dialog.open(SelectGroupComponent, {
       width: '50%',
-      data: { groups: this.groups }
+      data: { groups: this.filterGroupsByMaxPeopleNr(this.groups,row.maxPeopleNumber) }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed with result:', result);
+      console.log(result)
+      this.groupService.applyForRoomWithGroup(result.groupId,row.roomId).subscribe({
+        next: (getGroupResponse) => {
+          this.handleErrorService.handleSuccess("The application for the room ended successfully");
+          console.log(getGroupResponse);
+        },
+        error: (err) => this.handleErrorService.handleError(err)
+      });
     });
   }
 }

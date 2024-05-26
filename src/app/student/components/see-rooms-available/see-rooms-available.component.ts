@@ -35,7 +35,7 @@ export class SeeRoomsAvailableComponent {
     this.studentService.getStudent(this.studentId).subscribe({
       next: (studentResponse) => {
         this.dormitoryId = studentResponse.dormitory.dormitoryId;
-        this.getAllRooms();  // Call getMaxRoomNr only after dormitoryId is set
+        this.getAllRooms();
       },
       error: (err) => {
         this.handleErrorService.handleError(err);
@@ -44,7 +44,7 @@ export class SeeRoomsAvailableComponent {
   }
 
   getAllRooms(){
-    this.roomService.getAllRooms(this.dormitoryId).subscribe({
+    this.roomService.getAllVacantRooms(this.dormitoryId).subscribe({
       next: (getAllRoomsResponse) => {
         this.rooms = getAllRoomsResponse;
         this.summarizeRooms(getAllRoomsResponse);

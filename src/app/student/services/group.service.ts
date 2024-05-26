@@ -6,6 +6,7 @@ import {UpdateStudentRequest} from "../models/UpdateStudentRequest";
 import {GroupResponse} from "../models/group/GroupResponse";
 import {AddStudentToGroupRequest} from "../models/group/AddStudentToGroupRequest";
 import {StudentGroupResponse} from "../models/group/StudentGroupResponse";
+import {LessInfoGroup} from "../models/lessInfoGroup/LessInfoGroup";
 
 export interface Member {
   id: number;
@@ -30,6 +31,9 @@ export class GroupService {
   getGroupById(groupId: number): Observable<GroupResponse>{
     return this.http.get<GroupResponse>(`${this.url}/` + groupId);
   }
+  getAssignedGroupByDormitoryId(dormitoryId: number): Observable<GroupResponse[]>{
+    return this.http.get<GroupResponse[]>(`${this.url}/assignedToDormitory/` + dormitoryId);
+  }
   getStudentGroups(studentId: number): Observable<StudentGroupResponse>{
     return this.http.get<StudentGroupResponse>(`${this.url}/ofStudent/` + studentId);
   }
@@ -42,6 +46,13 @@ export class GroupService {
   deleteStudentFromGroup(groupId: number,studentId: number):  Observable<number>{
     const newUrl = `${this.url}/${groupId}/students/${studentId}`;
     return this.http.put<number>(newUrl, null );
+  }
+  applyForRoomWithGroup(groupId: number,roomId: number):  Observable<GroupResponse>{
+    const newUrl = `${this.url}/${groupId}/rooms/${roomId}`;
+    return this.http.put<GroupResponse>(newUrl, null );
+  }
+  hasAppliedForARoom(groupId: number): Observable<boolean>{
+    return this.http.get<boolean>(`${this.url}/hasRoomAssigned/` + groupId);
   }
 
   addStudentToGroup(addStudentToGroupRequest: AddStudentToGroupRequest): Observable<GroupResponse>{

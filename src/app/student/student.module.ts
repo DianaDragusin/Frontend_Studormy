@@ -14,6 +14,7 @@ import { GroupMembersComponent } from './components/group-members/group-members.
 import { SeeRoomsAvailableComponent } from './components/see-rooms-available/see-rooms-available.component';
 import { ApplyForRoomsComponent } from './components/apply-for-rooms/apply-for-rooms.component';
 import { SelectGroupComponent } from './components/select-group/select-group.component';
+import { MyRoomComponent } from './components/my-room/my-room.component';
 
 
 
@@ -28,7 +29,8 @@ import { SelectGroupComponent } from './components/select-group/select-group.com
     GroupMembersComponent,
     SeeRoomsAvailableComponent,
     ApplyForRoomsComponent,
-    SelectGroupComponent
+    SelectGroupComponent,
+    MyRoomComponent
   ],
   imports: [
     CommonModule,
