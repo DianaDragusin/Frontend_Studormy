@@ -92,7 +92,8 @@ export class GroupsComponent implements OnInit {
     if (this.idStudent) {
       this.groupService.getStudentGroups(this.idStudent)
         .subscribe((groups: StudentGroupResponse) => {
-          this.groups$ = groups.groups; // Assign fetched groups to groups$
+          this.groups$ = groups.groups;
+          console.log(groups)
         });
     }
   }

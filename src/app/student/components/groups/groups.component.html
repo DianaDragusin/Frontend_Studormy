@@ -19,10 +19,10 @@
         <button mat-icon-button aria-label="View members" (click)="getGroupsById(group.groupId)">
           <mat-icon>visibility</mat-icon>
         </button>
-        <button mat-icon-button aria-label="Add Member" (click)="addMember(group.groupId)">
+        <button mat-icon-button aria-label="Add Member" [disabled]="group.roomId" (click)="addMember(group.groupId)">
           <mat-icon>person_add</mat-icon>
         </button>
-        <button mat-icon-button color="warn" aria-label="Leave group" (click)="leaveGroup(group)">
+        <button mat-icon-button color="warn" aria-label="Leave group" [disabled]="group.roomId" (click)="leaveGroup(group)">
           <mat-icon>logout</mat-icon>
         </button>
       </mat-grid-tile>

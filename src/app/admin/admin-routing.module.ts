@@ -6,6 +6,7 @@ import {AddRoomsComponent} from "./components/add-rooms/add-rooms.component";
 import {
   RoomAllocationSettingsComponent
 } from "./components/room-allocation-settings/room-allocation-settings.component";
+import {RoomAllocationComponent} from "./components/room-allocation/room-allocation.component";
 
 const routes: Routes = [
   {
@@ -19,6 +20,10 @@ const routes: Routes = [
   {
     path: 'room-allocation-settings',
     component: RoomAllocationSettingsComponent,
+  },
+  {
+    path: 'room-allocation',
+    component: RoomAllocationComponent,
   },
 
 ];

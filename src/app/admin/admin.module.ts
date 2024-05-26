@@ -6,6 +6,8 @@ import { UploadfileComponent } from './components/uploadfile/uploadfile.componen
 import {AngularMaterialModule} from "../shared/angular-material.module";
 import { AddRoomsComponent } from './components/add-rooms/add-rooms.component';
 import { RoomAllocationSettingsComponent } from './components/room-allocation-settings/room-allocation-settings.component';
+import { RoomAllocationComponent } from './components/room-allocation/room-allocation.component';
+import {ApplyForRoomsComponent} from "../student/components/apply-for-rooms/apply-for-rooms.component";
 
 
 
@@ -15,7 +17,8 @@ import { RoomAllocationSettingsComponent } from './components/room-allocation-se
     AddstudentlistComponent,
     UploadfileComponent,
     AddRoomsComponent,
-    RoomAllocationSettingsComponent
+    RoomAllocationSettingsComponent,
+    RoomAllocationComponent,
   ],
   imports: [
     CommonModule,

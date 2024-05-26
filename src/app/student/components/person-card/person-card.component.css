@@ -1,12 +1,21 @@
 .example-card {
-  max-width: 30%;
-  margin: 10% 5%;
+  width: 200px;
+  margin: 10px;
+
 }
-text-box{
+.mat-card-image_ {
+  width: 100%; /* Ensures image takes up full width of card */
+  height: 250px; /* Fixed height for all images */
+  object-fit: cover; /* Ensures the image covers the set width and height without distortion */
+  display: block; /* Ensures no extra space below the image */
+}
+
+.text-box {
   display: flex;
   justify-content: center;
 }
-.centered{
- text-align: center;
+
+.centered {
+  text-align: center;
 }
 

@@ -1,0 +1,16 @@
+.table-container {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.mat-elevation-z8 {
+  overflow-x: auto;
+}
+
+.mat-table {
+  min-width: 800px; /* Adjust as necessary */
+}
+
+.mat-header-cell, .mat-cell {
+  white-space: nowrap; /* Prevent text from wrapping */
+}

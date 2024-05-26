@@ -25,6 +25,8 @@
     </button>
     <button mat-raised-button color="primary"  [routerLink]="['/add-rooms']" [queryParams]="{ idAdmin: adminData?.id }" >Add Rooms</button>
     <button mat-raised-button color="primary"  [routerLink]="['/room-allocation-settings']" [queryParams]="{ idAdmin: adminData?.id }" >Room Allocation Settings</button>
+    <button mat-raised-button color="primary"  [routerLink]="['/room-allocation']" [queryParams]="{ idAdmin: adminData?.id }" >Final Room Allocation</button>
+
     <button (click)="logOut()" mat-icon-button>
       <mat-icon>input</mat-icon>
     </button>

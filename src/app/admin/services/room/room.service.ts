@@ -21,8 +21,14 @@ export class RoomService {
   getMaxRoomNr(id: number): Observable<number>{
     return this.http.get<number>(`${this.url}/max/` + id );
   }
+  getMaxCapacity(id: number): Observable<number>{
+    return this.http.get<number>(`${this.url}/maxCapacity/` + id );
+  }
   getAllRooms(id: number):Observable<AddRoomResponse[]>{
     return this.http.get<AddRoomResponse[]>(`${this.url}/dormitory/`+ id );
+  }
+  getAllVacantRooms(id: number):Observable<AddRoomResponse[]>{
+    return this.http.get<AddRoomResponse[]>(`${this.url}/vacant/dormitory/`+ id );
   }
 
 }

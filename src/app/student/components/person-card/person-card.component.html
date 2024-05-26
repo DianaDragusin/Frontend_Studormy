@@ -1,14 +1,14 @@
 <mat-card class="example-card">
-  <img mat-card-image *ngIf="student?.avatarImage" [src]="student?.avatarImage" />
-  <img mat-card-image *ngIf="!student?.avatarImage" src="assets/noprofile.PNG" />
-
+  <img mat-card-image  class="mat-card-image_" *ngIf="student?.avatarImage" [src]="student?.avatarImage" />
+  <img mat-card-image   class="mat-card-image_" *ngIf="!student?.avatarImage" src="assets/noprofile.PNG" />
   <mat-card-content>
+    <div class="text-box" *ngIf="student?.firstname">
+      <p class="centered">{{student?.firstname}} {{student?.lastname}}</p>
+    </div>
+    <div class="text-box" *ngIf="!student?.firstname">
+      <p class="centered">{{student?.email}}</p>
+    </div>
   </mat-card-content>
-  <div class="text-box">
-    <p class="centered">{{student?.firstname}} {{student?.lastname}}</p>
-    <p class="centered">{{student?.email}}</p>
-  </div>
-
   <mat-card-actions>
     <button mat-button>Add to group</button>
     <button mat-button>Message</button>
