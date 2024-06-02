@@ -108,7 +108,6 @@ export class GroupsComponent implements OnInit {
     if (this.idStudent) {
       this.groupService.getGroupById(groupId)
         .subscribe((groups: GroupResponse) => {
-          console.log(groups.students);
           this.showGroupMembers(groups.students)
         });
     }

@@ -9,6 +9,7 @@ import {LoginResponse} from "../models/loginResponse";
 import {HttpErrorResponse} from "@angular/common/http";
 import {BaseComponent} from "../basic/base.component";
 import {EMAIL_ERROR_MESSAGES, PASSWORD_ERROR_MESSAGES} from '../login/login.config';
+import {LoginRequest} from "../models/loginRequest";
 
 @Component({
   selector: 'app-signup',
@@ -58,34 +59,22 @@ export class SignupComponent extends BaseComponent implements OnInit  {
   togglePasswordVisibility() {
     this.passwordVisible = !this.passwordVisible;
   }
-  selectRole(role : string) {
-    if ( role == 'student')
-    {
-      this.selectedRole = UserRole.Student;
-    }
-    else
-    {
-      this.selectedRole = UserRole.Admin;
-    }
-  }
+
   onSubmit() {
     if (this.loginForm.valid) {
-      const user: LoginModel = {
+      const user: LoginRequest = {
         email: this.loginForm.get('email')?.value,
         password: this.loginForm.get('password')?.value,
-        role:  this.selectedRole,
       };
-
-      this.authService.login(user).subscribe(
-        (loginResponse: LoginResponse) => {
-          if (this.selectedRole == UserRole.Student) {
-            this.router.navigate(['profile'], { queryParams: loginResponse });
-          } else if (this.selectedRole == UserRole.Admin) {
-            this.router.navigate(['addlist'], { queryParams: loginResponse });
-          }
-
+  console.log(user)
+      this.authService.signUp(user).subscribe(
+        (adminId) => {
+          const admin: LoginResponse = {
+            id: adminId,
+          };
+          console.log(adminId);
+          this.router.navigate(['addlist'], { queryParams: admin });
           this.handleErrorService.handleSuccess("Successfully logged in");
-
         },
         (error: HttpErrorResponse) => {
           this.handleErrorService.handleError(error);

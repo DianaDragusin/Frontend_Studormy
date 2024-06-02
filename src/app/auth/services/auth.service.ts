@@ -35,7 +35,19 @@ export class AuthService {
         })
       );
   }
-
+  signUp(signUpRequest: LoginRequest): Observable<number> {
+    return this.http.post<number>(this.url + 'signUp' , signUpRequest)
+      .pipe(
+        tap((response) => {
+          this.isLoggedIn = true;
+          this.userId = response;
+          this.role = 'admin';
+          sessionStorage.setItem('isLoggedIn', 'true');
+          sessionStorage.setItem('userId',response.toString());
+          sessionStorage.setItem('role','admin');
+        })
+      );
+  }
   logout(): void {
     this.isLoggedIn = false;
     this.userId = -1;

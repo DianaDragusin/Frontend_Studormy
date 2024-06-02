@@ -20,3 +20,9 @@
 mat-form-field {
   width: 40%;
 }
+.text-container {
+  padding: 20px;
+  margin: 5% 15%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}

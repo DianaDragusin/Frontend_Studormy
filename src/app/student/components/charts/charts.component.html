@@ -1,0 +1,25 @@
+<!-- charts.component.html -->
+<div >
+  <mat-card class="text-container">
+    <mat-card-header>
+      <mat-card-title>
+        <h1>Membership Clusters for students that answered the Questionnaire</h1>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-card-subtitle> Nobody fits exactly to one cluster, here you can see how much you belong to each clusters and compare yourself to your roommates
+      </mat-card-subtitle>
+      <mat-card-subtitle>
+        Your final room is room number {{room?.roomNumber}}.The members of the room are:
+      </mat-card-subtitle>
+      <ul>
+        <li *ngFor="let roommate of roommates">
+          {{roommate.email}}
+        </li>
+      </ul>
+    </mat-card-content>
+  </mat-card>
+   <div *ngFor="let roommate of roommates">
+    <app-chart class='charts'  [studentId]="roommate.id" [studentEmail]="roommate.email" [chartId]="generateChartId(roommate.id)"></app-chart>
+  </div>
+</div>

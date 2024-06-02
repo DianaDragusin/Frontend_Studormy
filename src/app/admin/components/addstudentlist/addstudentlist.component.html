@@ -1,50 +1,66 @@
-<div *ngIf="!finished">
 
-<mat-stepper [linear]=true  labelPosition="bottom"  [orientation]="(stepperOrientation | async)!" #stepper >
-  <mat-step [stepControl]="firstFormGroup" state="home"  *ngIf="!admin?.dormitory?.dormitoryId">
-    <form [formGroup]="firstFormGroup" >
-      <ng-template matStepLabel>Fill out the name of your dormitory</ng-template>
-      <div class="centered-wrapper">
-        <mat-form-field>
-          <mat-label>Dormitory Name</mat-label>
-          <input matInput placeholder="Ex: Victoria Dormitory" formControlName="dormitory" required>
-        </mat-form-field>
+  <mat-card class="text-container">
+    <mat-card-header>
+      <mat-card-title>
+        <h1>Here you must set up up you admin account.  </h1>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-card-subtitle>Follow the steps below. After you choose a dormitory name , you can not change it anymore. The format for adding students to the dormitory is teh following Ex: email,password,matricol_number,dormitoryId. You will see the dormitoryId after you add the name of the dormitory.
+      </mat-card-subtitle>
+      <mat-card-subtitle *ngIf="dorm?.dormitoryId"> Your dormitory Id is {{dorm?.dormitoryId}} and yo take care of dormitory {{dorm?.name}}
+      </mat-card-subtitle>
+      <mat-card-subtitle *ngIf="admin?.dormitory?.dormitoryId"> Your dormitory Id is {{admin?.dormitory?.dormitoryId}}
+      </mat-card-subtitle>
+      <div *ngIf="!finished">
+          <mat-stepper [linear]=true  labelPosition="bottom"  [orientation]="(stepperOrientation | async)!" #stepper >
+          <mat-step [stepControl]="firstFormGroup" state="home"  *ngIf="!admin?.dormitory?.dormitoryId">
+            <form [formGroup]="firstFormGroup" >
+              <ng-template matStepLabel>Fill out the name of your dormitory</ng-template>
+              <div class="centered-wrapper">
+                <mat-form-field>
+                  <mat-label>Dormitory Name</mat-label>
+                  <input matInput placeholder="Ex: Victoria Dormitory" formControlName="dormitory" required>
+                </mat-form-field>
+              </div>
+              <div class="centered-wrapper">
+                <button mat-button matStepperNext (click)="addDormitory()">Next</button>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step label="Upload a file with students " state="download">
+            <div class="centered-wrapper">
+              <app-uploadfile [idAdmin]="loginResponse.id" #uploadFile></app-uploadfile>
+            </div>
+            <div class="centered-wrapper">
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext [disabled]="!uploadFile.uploadSuccesful">Next</button>
+            </div>
+          </mat-step>
+          <mat-step state="rocket">
+            <div class="centered-wrapper">
+              <ng-template matStepLabel>Done</ng-template>
+              <p>Congratulations you have finished the setup.</p>
+            </div>
+            <div class="centered-wrapper">
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button (click)="finishProcess()">Finish</button>
+            </div>
+          </mat-step>
+          <ng-template matStepperIcon="home">
+            <mat-icon>home</mat-icon>
+          </ng-template>
+          <ng-template matStepperIcon="download">
+            <mat-icon>upload</mat-icon>
+          </ng-template>
+          <ng-template matStepperIcon="rocket">
+            <mat-icon>rocketlaunch</mat-icon>
+          </ng-template>
+        </mat-stepper>
       </div>
-      <div class="centered-wrapper">
-        <button mat-button matStepperNext>Next</button>
+      <div *ngIf="finished">
+        <h3>You have finished setting up your admin account</h3>
       </div>
-    </form>
-  </mat-step>
-  <mat-step label="Upload a file with students " state="download">
-    <div class="centered-wrapper">
-    <app-uploadfile [idAdmin]="loginResponse.id" #uploadFile></app-uploadfile>
-    </div>
-    <div class="centered-wrapper">
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext [disabled]="!uploadFile.uploadSuccesful">Next</button>
-    </div>
-  </mat-step>
-  <mat-step state="rocket">
-    <div class="centered-wrapper">
-    <ng-template matStepLabel>Done</ng-template>
-    <p>Congratulations you have finished the setup.</p>
-    </div>
-    <div class="centered-wrapper">
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="finishProcess()">Finish</button>
-    </div>
-  </mat-step>
-  <ng-template matStepperIcon="home">
-    <mat-icon>home</mat-icon>
-  </ng-template>
-  <ng-template matStepperIcon="download">
-    <mat-icon>upload</mat-icon>
-  </ng-template>
-  <ng-template matStepperIcon="rocket">
-    <mat-icon>rocketlaunch</mat-icon>
-  </ng-template>
-</mat-stepper>
-</div>
-<div *ngIf="finished">
-  <h3>You have finished setting up your admin account</h3>
-</div>
+
+    </mat-card-content>
+  </mat-card>
