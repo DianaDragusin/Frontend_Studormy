@@ -7,6 +7,8 @@ import {ProfileComponent} from "./components/profile/profile.component";
 import {GroupsComponent} from "./components/groups/groups.component";
 import {SeeRoomsAvailableComponent} from "./components/see-rooms-available/see-rooms-available.component";
 import {ApplyForRoomsComponent} from "./components/apply-for-rooms/apply-for-rooms.component";
+import {ChartComponent} from "./components/chart/chart.component";
+import {ChartsComponent} from "./components/charts/charts.component";
 
 const routes: Routes = [
   {
@@ -24,6 +26,10 @@ const routes: Routes = [
   {
     path: 'apply-for-rooms',
     component: ApplyForRoomsComponent,
+  },
+  {
+    path: 'charts',
+    component: ChartsComponent,
   },
 
 ];

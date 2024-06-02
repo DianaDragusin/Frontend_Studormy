@@ -1,4 +1,4 @@
-/* CSS to make the card layout split view */
+
 .container {
   display: flex;
   justify-content: space-around;
@@ -32,19 +32,19 @@ button {
 }
 .room-item {
   display: flex;
-  align-items: center; /* Ensures vertical center alignment */
-  font-size: 16px; /* Example font size */
-  line-height: 1.2; /* Adjust line-height to improve alignment */
+  align-items: center;
+  font-size: 16px;
+  line-height: 1.2;
 }
 
 .person-icon, .icon {
-  margin-left: 4px; /* Space between text and icon */
-  vertical-align: middle; /* Aligns icons with the baseline of the text */
+  margin-left: 4px;
+  vertical-align: middle;
 }
 
-.mat-icon { /* Specific adjustments for Material icons if necessary */
-  display: inline-flex; /* Helps with precise alignment in some cases */
-  align-items: center; /* Center the icon inside its flex container */
+.mat-icon {
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
 }
 
@@ -54,4 +54,10 @@ button {
 }
 label{
   margin : 3%
+}
+.text-container {
+  padding: 20px;
+  margin: 5% 15%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
 }

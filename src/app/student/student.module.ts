@@ -15,6 +15,8 @@ import { SeeRoomsAvailableComponent } from './components/see-rooms-available/see
 import { ApplyForRoomsComponent } from './components/apply-for-rooms/apply-for-rooms.component';
 import { SelectGroupComponent } from './components/select-group/select-group.component';
 import { MyRoomComponent } from './components/my-room/my-room.component';
+import { ChartComponent } from './components/chart/chart.component';
+import { ChartsComponent } from './components/charts/charts.component';
 
 
 
@@ -30,7 +32,9 @@ import { MyRoomComponent } from './components/my-room/my-room.component';
     SeeRoomsAvailableComponent,
     ApplyForRoomsComponent,
     SelectGroupComponent,
-    MyRoomComponent
+    MyRoomComponent,
+    ChartComponent,
+    ChartsComponent
   ],
   imports: [
     CommonModule,

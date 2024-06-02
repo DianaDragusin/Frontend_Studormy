@@ -10,6 +10,9 @@ import {AdminService} from "../../services/admin.service";
 import {GetAdminResponse} from "../../models/adminResponse";
 import {GetStudentResponse} from "../../../student/models/GetStudentResponse";
 import {HandleErrorService} from "../../../auth/services/handle-error.service";
+import {DormitoryService} from "../../services/dormitory/dormitory.service";
+import {AddDormitoryResponse} from "../../models/AddDormitoryResponse";
+import {LoginRequest} from "../../../auth/models/loginRequest";
 
 @Component({
   selector: 'app-addstudentlist',
@@ -24,7 +27,9 @@ import {HandleErrorService} from "../../../auth/services/handle-error.service";
 })
 export class AddstudentlistComponent implements OnInit {
   admin: GetAdminResponse | undefined;
+  dorm : AddDormitoryResponse | undefined;
   finished: boolean = false;
+
 
   firstFormGroup = this._formBuilder.group({
     dormitory: ['', Validators.required],
@@ -36,6 +41,7 @@ export class AddstudentlistComponent implements OnInit {
               private _formBuilder: FormBuilder,
               breakpointObserver: BreakpointObserver,
               private adminService : AdminService,
+              private dormitororyService: DormitoryService,
               private handleErrorService: HandleErrorService,
   ) {
     this.stepperOrientation = breakpointObserver
@@ -43,6 +49,7 @@ export class AddstudentlistComponent implements OnInit {
       .pipe(map(({matches}) => (matches ? 'horizontal' : 'vertical')));
   }
   ngOnInit(): void {
+
     this.activatedRoute.queryParams.subscribe(params => {
       this.loginResponse = params as LoginResponse;
       this.getAdmin()
@@ -58,6 +65,23 @@ export class AddstudentlistComponent implements OnInit {
         this.handleErrorService.handleError(error);
       }
     );
+  }
+  addDormitory(){
+    if (this.firstFormGroup.valid) {
+       const name = this.firstFormGroup.get('dormitory')?.value;
+       if (name &&  this.admin?.id)
+      this.dormitororyService.addDormitory(this.admin?.id,name).subscribe({
+        next: (dorm) => {
+          this.dorm = dorm;
+          console.log(dorm);
+          this.handleErrorService.handleSuccess("Successfully added the dormitory")
+        },
+        error: (err) => {
+          this.handleErrorService.handleError(err);
+        }
+      });
+      }
+
   }
   finishProcess(){
     this.finished = true;

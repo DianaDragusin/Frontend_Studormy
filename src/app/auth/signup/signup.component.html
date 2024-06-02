@@ -21,7 +21,7 @@
           </div>
           <mat-error><app-form-error-handling [control]="loginForm.get('password')" [errorMessages]="PASSWORD_ERROR_MESSAGES"></app-form-error-handling></mat-error>
         </mat-form-field>
-        <button mat-raised-button type="submit" [disabled]="!loginForm.valid" [color]="loginForm.valid ? 'primary' : ''" (click)="onSubmit()">Login</button>
+        <button mat-raised-button type="submit" [disabled]="!loginForm.valid" [color]="loginForm.valid ? 'primary' : ''" (click)="onSubmit()">SignUp</button>
       </div>
       <button mat-button routerLink="/login">Go to Login</button>
     </form>

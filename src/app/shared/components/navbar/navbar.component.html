@@ -11,6 +11,7 @@
     <button mat-raised-button color="primary"  [routerLink]="['/see-rooms-available']" [queryParams]="{ idStudent: studentData?.id }" >Available Rooms</button>
     <button mat-raised-button color="primary"  [routerLink]="['/student-groups']" [queryParams]="{ idStudent: studentData?.id }" >My Groups</button>
     <button mat-raised-button color="primary"  [routerLink]="['/apply-for-rooms']" [queryParams]="{ idStudent: studentData?.id }" >Apply For Room</button>
+    <button mat-raised-button color="primary"  [routerLink]="['/charts']" [queryParams]="{ idStudent: studentData?.id }" >Allocation Process Details</button>
 
     <button (click)="logOut()" mat-icon-button>
       <mat-icon>input</mat-icon>
