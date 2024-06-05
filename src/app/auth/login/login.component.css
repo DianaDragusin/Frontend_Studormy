@@ -1,11 +1,13 @@
-
 .login-options button {
-  transition: box-shadow 0.3s ease; /* Add transition for smooth effect */
+  transition: box-shadow 0.3s ease, opacity 0.3s ease;
+  opacity: 0.5;
 }
 
 .login-options button.selected {
-  box-shadow: 0px 0px 5px 2px ; /* Add shadow effect when selected */
+  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
+  opacity: 1;
 }
+
 .login-options {
   margin-bottom: 20px;
   display: flex;

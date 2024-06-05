@@ -2,6 +2,7 @@ import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core'
 import {ClusterStudentsService} from "../../services/cluster-students.service";
 import {ActivatedRoute} from "@angular/router";
 import {GetStudentMembershipValues} from "../../models/GetStudentMembershipValues";
+import {HandleErrorService} from "../../../auth/services/handle-error.service";
 interface LegendEntry {
   label: string;
   percentage: number;
@@ -26,7 +27,8 @@ export class ChartComponent implements  OnChanges {
 
   constructor(
     private clusterStudentService: ClusterStudentsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private handleError: HandleErrorService
   ) { }
 
 
@@ -49,12 +51,11 @@ export class ChartComponent implements  OnChanges {
           Math.round(data.cluster3 * 100),
           Math.round(data.cluster4 * 100)
         ];
-        console.log(this.percentages);
         this.drawPieChart();
         this.generateLegendData();
       },
-      error: (err) => console.error('Error fetching membership values', err)
-    });
+      error: (err) => this.handleError.handleInformative("Student did not take the Big 5 Test")
+    })
   }
 
   private drawPieChart(): void {

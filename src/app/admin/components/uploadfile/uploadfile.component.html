@@ -1,18 +1,24 @@
 
 <input type="file" class="file-input"
        (change)="onFileSelected($event)"  accept=".txt" #fileUpload>
+<div class="file-upload-container">
 
-<div class="file-upload">
+<div>
 
   {{fileName || "No file uploaded yet."}}
 
-  <button mat-mini-fab color="primary" class="upload-btn"
+  <button *ngIf="!fileName"  mat-mini-fab color="primary" class="upload-btn"
           (click)="fileUpload.click()">
     <mat-icon>attach_file</mat-icon>
   </button>
+
+  <button *ngIf="fileName" mat-mini-fab color="warn" class="delete-btn" (click)="clearFile()">
+    <mat-icon>delete</mat-icon>
+  </button>
+</div>
 </div>
 
-<div *ngIf="selectedFile">
+<div *ngIf="selectedFile" class="selected_file">
   <p>Selected file: {{ fileName }}</p>
   <mat-spinner *ngIf="uploadProgress !== undefined" [diameter]="50" color="accent"></mat-spinner>
 </div>

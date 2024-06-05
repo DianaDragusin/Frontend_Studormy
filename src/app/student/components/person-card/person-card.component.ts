@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {GetStudentResponse} from "../../models/GetStudentResponse";
+import {LessInfoStudent} from "../../models/lessInfoStudent/LessInfoStudent";
 
 
 @Component({

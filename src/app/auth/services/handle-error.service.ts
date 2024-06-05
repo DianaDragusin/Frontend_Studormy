@@ -13,6 +13,9 @@ export class HandleErrorService {
   public handleError(err: HttpErrorResponse) {
     if (err) this.toaster.error(err.error.errorMessage);
   }
+  public handleErrorMessage(err: Error) {
+    if (err) this.toaster.error(err.message);
+  }
 
   public handleSuccess(suc: string) {
     if (suc) this.toaster.success(suc);

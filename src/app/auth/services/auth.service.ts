@@ -5,6 +5,7 @@ import {Observable, tap} from "rxjs";
 import {LoginResponse} from "../models/loginResponse";
 import {UserRole} from "../enums/userRole";
 import {LoginRequest} from "../models/loginRequest";
+import {ShuffleQuestionService} from "../../student/services/shuffle-question.service";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class AuthService {
   private userId: number  = sessionStorage.getItem('userId') ? parseInt(sessionStorage.getItem('userId')!) : -1;
   private role: string  = '' ;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private shuffleService : ShuffleQuestionService) {}
 
   login(loginModel: LoginModel): Observable<LoginResponse> {
     const loginRequest: LoginRequest = {
@@ -53,6 +54,7 @@ export class AuthService {
     this.userId = -1;
     this.role = '';
     sessionStorage.clear();
+    this.shuffleService.resetState();
   }
 
   isAuthenticated(): boolean {

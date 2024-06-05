@@ -1,5 +1,5 @@
 <div class="card-container">
-  <div *ngIf="cluster === -1">
+  <div *ngIf="cluster === -1 && !isAllocationProcessOver">
     <mat-card class="wide-card">
       <h2>In order for us to give you the best matches we first have to know some things about you</h2>
       <div *ngFor="let question of questions">
@@ -12,7 +12,7 @@
       <button mat-raised-button color="primary" (click)="finalizeResponses()">Submit All</button>
     </mat-card>
   </div>
-  <div *ngIf="cluster !== -1">
+  <div *ngIf="cluster !== -1 && !isAllocationProcessOver">
     <mat-card class="wide-card">
       <h2>Congratulations you are part of cluster {{cluster}}. Here are some suggestions of people like you, in your dorm</h2>
     </mat-card>
@@ -23,3 +23,30 @@
     </div>
   </div>
 </div>
+
+<mat-card class="text-container"  *ngIf="cluster == -1 && isAllocationProcessOver">
+  <mat-card-header>
+    <mat-card-title>
+      <h1>The Room Allocation Process is finished! Go To Allocation Process Details to see the room you have been assigned to and your roommates! </h1>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-card-subtitle> Unfortunately you can't take the personality test anymore! But if your roommates have you can see their results to have a better idea of the personality of your roommates.
+    </mat-card-subtitle>
+  </mat-card-content>
+</mat-card>
+
+<mat-card class="text-container"  *ngIf="cluster != -1 && isAllocationProcessOver">
+
+  <mat-card-header>
+    <mat-card-title>
+      <h1>The Room Allocation Process is finished! </h1>
+      <h1>Go To Allocation Process Details to see the room you have been assigned to and your roommates! </h1>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-card-subtitle>Compare your results with your roommates!
+    </mat-card-subtitle>
+  </mat-card-content>
+</mat-card>
+
