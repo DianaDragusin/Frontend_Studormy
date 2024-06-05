@@ -10,6 +10,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {BaseComponent} from "../basic/base.component";
 import {EMAIL_ERROR_MESSAGES, PASSWORD_ERROR_MESSAGES} from '../login/login.config';
 import {LoginRequest} from "../models/loginRequest";
+import * as CryptoJS from "crypto-js";
 
 @Component({
   selector: 'app-signup',
@@ -64,7 +65,7 @@ export class SignupComponent extends BaseComponent implements OnInit  {
     if (this.loginForm.valid) {
       const user: LoginRequest = {
         email: this.loginForm.get('email')?.value,
-        password: this.loginForm.get('password')?.value,
+        password: CryptoJS.SHA256(this.loginForm.get('password')?.value).toString(),
       };
   console.log(user)
       this.authService.signUp(user).subscribe(

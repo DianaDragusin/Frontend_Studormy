@@ -87,13 +87,4 @@ export class authGuard implements CanActivate  {
     }
     return true;
   }
-
-  private hasRoomAssigned(studentId: number): void {
-    this.studentService.getStudentHasRoom(studentId).subscribe({
-      next: (hasRoomAssigned) => {
-        this.hasRoom = hasRoomAssigned.valueOf();
-      },
-      error: (err) => console.log(err)
-    });
-  }
 }
