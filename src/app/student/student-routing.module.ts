@@ -9,27 +9,33 @@ import {SeeRoomsAvailableComponent} from "./components/see-rooms-available/see-r
 import {ApplyForRoomsComponent} from "./components/apply-for-rooms/apply-for-rooms.component";
 import {ChartComponent} from "./components/chart/chart.component";
 import {ChartsComponent} from "./components/charts/charts.component";
+import {authGuard} from "../auth/guards/auth.guard";
 
 const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
+    canActivate: [authGuard],
   },
   {
     path: 'student-groups',
     component: GroupsComponent,
+    canActivate: [authGuard],
   },
   {
     path: 'see-rooms-available',
     component: SeeRoomsAvailableComponent,
+    canActivate: [authGuard],
   },
   {
     path: 'apply-for-rooms',
     component: ApplyForRoomsComponent,
+    canActivate: [authGuard],
   },
   {
     path: 'charts',
     component: ChartsComponent,
+    canActivate: [authGuard],
   },
 
 ];

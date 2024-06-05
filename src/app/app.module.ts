@@ -9,6 +9,7 @@ import {AppRoutingModule} from "./app-routing.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {AuthModule} from "./auth/auth.module";
 import {LandingpageModule} from "./landingpage/landingpage.module";
+import {authGuard} from "./auth/guards/auth.guard";
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import {LandingpageModule} from "./landingpage/landingpage.module";
     AppRoutingModule,
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [authGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

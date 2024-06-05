@@ -7,23 +7,28 @@ import {
   RoomAllocationSettingsComponent
 } from "./components/room-allocation-settings/room-allocation-settings.component";
 import {RoomAllocationComponent} from "./components/room-allocation/room-allocation.component";
+import {authGuard} from "../auth/guards/auth.guard";
 
 const routes: Routes = [
   {
     path: 'addlist',
     component: AddstudentlistComponent,
+    canActivate: [authGuard],
   },
   {
     path: 'add-rooms',
     component: AddRoomsComponent,
+    canActivate: [authGuard],
   },
   {
     path: 'room-allocation-settings',
     component: RoomAllocationSettingsComponent,
+    canActivate: [authGuard],
   },
   {
     path: 'room-allocation',
     component: RoomAllocationComponent,
+    canActivate: [authGuard],
   },
 
 ];
