@@ -10,6 +10,7 @@ import {HandleErrorService} from "../services/handle-error.service";
 import {CustomErrorResponse} from "../models/customErrorResponse";
 import {LoginResponse} from "../models/loginResponse";
 import {HttpErrorResponse} from "@angular/common/http";
+import * as CryptoJS from 'crypto-js';
 
 @Component({
   selector: 'app-login',
@@ -73,7 +74,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
     if (this.loginForm.valid) {
       const user: LoginModel = {
         email: this.loginForm.get('email')?.value,
-        password: this.loginForm.get('password')?.value,
+        password: CryptoJS.SHA256(this.loginForm.get('password')?.value).toString(),
         role:  this.selectedRole,
       };
 
