@@ -19,6 +19,18 @@ export class ShuffleQuestionService {
     this.shuffleQuestions();
     this.initializeResponses();
   }
+
+  private initializeState(): void {
+    this.questions = this.prepareQuestions();
+    this.shuffleQuestions();
+    this.initializeResponses();
+    this.currentIndex = 0;
+    this.openness = [];
+    this.conscienciousness = [];
+    this.extroversion = [];
+    this.agreableness = [];
+    this.neuroticism = [];
+  }
  private initializeResponses(): void {
     for (let question in QuestionsEnum)
     {
@@ -116,9 +128,7 @@ export class ShuffleQuestionService {
     return this.responses;
   }
 
-  public redoShuffle(): void{
-    this.questions = this.prepareQuestions();
-    this.shuffleQuestions();
-    this.responses = {};
+  public resetState(): void {
+    this.initializeState();
   }
 }

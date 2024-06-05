@@ -1,3 +1,15 @@
 input {
   display: none;
 }
+.selected_file{
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+button{
+  margin-left: 10px;
+}
+.file-upload-container{
+  display: flex;
+  justify-content: center;
+}

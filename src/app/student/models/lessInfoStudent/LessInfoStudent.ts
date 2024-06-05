@@ -4,4 +4,5 @@ export interface LessInfoStudent{
   email: string;
   firstname : string;
   lastname: string;
+  cluster : number;
 }

@@ -43,10 +43,15 @@ export class ClusterStudentsService {
   getRoommates(studentId:number):Observable<LessInfoStudent[]>{
     return this.http.get<LessInfoStudent[]>(`${this.url}/roommates/` + studentId );
   }
+  getRoommatesOnly(studentId:number):Observable<LessInfoStudent[]>{
+    return this.http.get<LessInfoStudent[]>(`${this.url}/roommatesOnly/` + studentId );
+  }
   getRoom(studentId:number):Observable<AddRoomResponse>{
     return this.http.get<AddRoomResponse>(`${this.url}/room/` + studentId );
   }
-
+  getLessInfoStudent(studentId:number):Observable<LessInfoStudent>{
+    return this.http.get<LessInfoStudent>(`${this.url}/lessInfoStudent/` + studentId );
+  }
 
 
 }

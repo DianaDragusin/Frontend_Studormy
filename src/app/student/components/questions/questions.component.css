@@ -4,7 +4,12 @@
   align-items: center;
   margin: 0 10%;
 }
-
+.text-container {
+  padding: 20px;
+  margin: 5% 15% 1%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
 .wide-card {
   width: 100%;
   max-width: 1000px;

@@ -9,19 +9,21 @@ import {PredictionClusterResponse} from "../../models/PredictionClusterResponse"
 import {GetStudentResponse} from "../../models/GetStudentResponse";
 import {HandleErrorService} from "../../../auth/services/handle-error.service";
 import {StudentService} from "../../services/student.service";
+import {SettingsService} from "../../../admin/services/settings/settings.service";
 @Component({
   selector: 'app-questions',
   templateUrl: './questions.component.html',
   styleUrls: ['./questions.component.css']
 })
 export class QuestionsComponent  implements OnInit{
-  @Input() idStudent : number  = 0;
+  @Input() idStudent : number  = -1;
   questions: any[] = [];
   responses: { [question: string]: number } = {};
   flagNext = true;
   flagPrev= false;
   cluster = -1;
   students : any[] = [];
+  isAllocationProcessOver = false;
 
 
   constructor(
@@ -35,6 +37,7 @@ export class QuestionsComponent  implements OnInit{
     this.loadNextBatch();
     this.initializeResponseValues();
     this.initializeCuster();
+    this.getAllocationProcessOver();
   }
   initializeCuster():void{
     this.studentService.getStudent(this.idStudent).subscribe(
@@ -48,7 +51,16 @@ export class QuestionsComponent  implements OnInit{
         this.handleErrorService.handleError(error);
       }
     );
-
+  }
+  getAllocationProcessOver():void{
+    this.studentService.getStudentHasRoom(this.idStudent).subscribe(
+      (hasRoom) => {
+        this.isAllocationProcessOver = hasRoom.valueOf();
+      },
+      error => {
+        this.handleErrorService.handleError(error);
+      }
+    );
   }
   initializeResponseValues(){
     this.responses = this.questionService.getAllResponses()

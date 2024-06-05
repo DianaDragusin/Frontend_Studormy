@@ -29,27 +29,66 @@ export class UploadfileComponent {
     this.upload();
 
   }
-prepareFile(content: string): any[]
-{
-  const studentLines: string[] = content.split('\n').map(line => line.trim());
+  testAndPrepareFile(content: string): any[] {
+    const studentLines: string[] = content.split('\n').map(line => line.trim());
+    // starts with something that is not @ than has a @ then continues with something other than @ and then it ends
+    const emailPattern = /^[^@]+@[^@]+$/;
 
+    const students = studentLines.map((line, index) => {
+      const parts = line.split(',');
 
-  const students = studentLines.map(line => {
-    const [ email, password, registrationNumber, dormitory] = line.split(',');
+      if (parts.length !== 4) {
+        throw new Error(`Invalid data format at line ${index + 1}: ${line}`);
+      }
 
-    return {
-       email: email, password: password,  registrationNumber : parseInt(registrationNumber),dormitory : parseInt(dormitory)
-    };
-  });
-  return students
-}
+      const [email, password, registrationNumber, dormitory] = parts;
+
+      if (!emailPattern.test(email)) {
+        throw new Error(`Invalid email at line ${index + 1}: ${email}`);
+      }
+
+      if ( password.length < 6) {
+        throw new Error(`Passwords must have a length >= 6, invalid password at line ${index + 1}`);
+      }
+
+      const registrationNumberInt = parseInt(registrationNumber);
+      if (isNaN(registrationNumberInt)) {
+        throw new Error(`Invalid registration number at line ${index + 1}: ${registrationNumber}`);
+      }
+
+      const dormitoryInt = parseInt(dormitory);
+      if (isNaN(dormitoryInt)) {
+        throw new Error(`Invalid dormitory ID at line ${index + 1}: ${dormitory}`);
+      }
+
+      return {
+        email: email,
+        password: password,
+        registrationNumber: registrationNumberInt,
+        dormitory: dormitoryInt
+      };
+    });
+
+    return students;
+  }
+
+  clearFile(): void {
+    this.selectedFile = undefined;
+    this.fileName = '';
+    this.response = [];
+    this.uploadProgress = undefined;
+    this.uploadSuccesful = true;
+  }
+
 upload(): void
 {
   if (this.selectedFile) {
     const fileReader = new FileReader();
     fileReader.onload = (e) => {
       const content: string = fileReader.result as string;
-       const students = this.prepareFile(content)
+      try{
+        const students = this.testAndPrepareFile(content)
+
        this.uploadProgress = 0;
 
        this.studentService.addStudents(this.idAdmin,students).subscribe(
@@ -66,10 +105,15 @@ upload(): void
 
         }
       );
+      } catch (error){
+        this.handleErrorService.handleErrorMessage(error as Error);
+      }
+
     };
 
     fileReader.readAsText(this.selectedFile);
   }
+
 
 }
 

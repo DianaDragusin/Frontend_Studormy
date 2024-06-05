@@ -50,7 +50,7 @@ export class SeeRoomsAvailableComponent {
         this.summarizeRooms(getAllRoomsResponse);
       },
       error: (err) => {
-        this.handleErrorService.handleError(err);
+        this.handleErrorService.handleInformative("There is no available room left!");
       }
     });
   }

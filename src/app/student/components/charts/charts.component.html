@@ -9,17 +9,27 @@
     <mat-card-content>
       <mat-card-subtitle> Nobody fits exactly to one cluster, here you can see how much you belong to each clusters and compare yourself to your roommates
       </mat-card-subtitle>
-      <mat-card-subtitle>
-        Your final room is room number {{room?.roomNumber}}.The members of the room are:
+      <mat-card-subtitle *ngIf="room?.roomNumber">
+        Your final room is room number {{room?.roomNumber}}
+      </mat-card-subtitle>
+      <mat-card-subtitle *ngIf="this.roommatesOnly.length != 0">
+        Your roommates are:
       </mat-card-subtitle>
       <ul>
-        <li *ngFor="let roommate of roommates">
+        <li *ngFor="let roommate of roommatesOnly">
           {{roommate.email}}
         </li>
       </ul>
     </mat-card-content>
   </mat-card>
-   <div *ngFor="let roommate of roommates">
-    <app-chart class='charts'  [studentId]="roommate.id" [studentEmail]="roommate.email" [chartId]="generateChartId(roommate.id)"></app-chart>
+  <div class="chart-section">
+    <div class="chart-card" *ngIf="hasCluster">
+      <app-chart class="chart" [studentId]="studentId" [studentEmail]="'You'" [chartId]="'mainChart'"></app-chart>
+    </div>
+    <div *ngFor="let roommate of roommatesOnly" >
+      <div *ngIf="roommate.cluster" class="chart-card">
+      <app-chart [studentId]="roommate.id" [studentEmail]="roommate.email" [chartId]="generateChartId(roommate.id)"></app-chart>
+      </div>
+    </div>
   </div>
 </div>
