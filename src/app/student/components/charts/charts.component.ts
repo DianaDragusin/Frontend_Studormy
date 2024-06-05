@@ -57,10 +57,6 @@ export class ChartsComponent {
       error: (err) => this.handleErrorService.handleError(err)
     });
   }
-  protected isRoommatesListEmpty():boolean{
-    console.log("This is the list " + this.roommatesOnly.length);
-    return this.roommatesOnly.length == 0;
-  }
 
   private getRoom(): void {
     this.clusterStudentService.getRoom(this.studentId).subscribe({
