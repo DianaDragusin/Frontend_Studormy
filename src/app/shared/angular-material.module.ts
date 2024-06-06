@@ -22,6 +22,7 @@ import {MatTableModule} from "@angular/material/table";
 import {MatSortModule} from "@angular/material/sort";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatRippleModule} from "@angular/material/core";
+import {MatTooltip, MatTooltipModule} from "@angular/material/tooltip";
 
 
 const materialModules = [
@@ -47,7 +48,8 @@ const materialModules = [
   MatTableModule,
   MatSortModule,
   MatDividerModule,
-  MatRippleModule
+  MatRippleModule,
+  MatTooltipModule
 
 
 

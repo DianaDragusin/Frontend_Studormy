@@ -10,6 +10,7 @@ import {GetStudentResponse} from "../../models/GetStudentResponse";
 import {HandleErrorService} from "../../../auth/services/handle-error.service";
 import {StudentService} from "../../services/student.service";
 import {SettingsService} from "../../../admin/services/settings/settings.service";
+import {getClusterName} from "../../../shared/utils/clusterIndex";
 @Component({
   selector: 'app-questions',
   templateUrl: './questions.component.html',
@@ -126,4 +127,5 @@ export class QuestionsComponent  implements OnInit{
   }
 
 
+  protected readonly getClusterName = getClusterName;
 }

@@ -17,6 +17,8 @@ import { SelectGroupComponent } from './components/select-group/select-group.com
 import { MyRoomComponent } from './components/my-room/my-room.component';
 import { ChartComponent } from './components/chart/chart.component';
 import { ChartsComponent } from './components/charts/charts.component';
+import { ClustersComponent } from './components/clusters/clusters.component';
+import { BigFiveComponent } from './components/big-five/big-five.component';
 
 
 
@@ -34,7 +36,9 @@ import { ChartsComponent } from './components/charts/charts.component';
     SelectGroupComponent,
     MyRoomComponent,
     ChartComponent,
-    ChartsComponent
+    ChartsComponent,
+    ClustersComponent,
+    BigFiveComponent
   ],
   imports: [
     CommonModule,
