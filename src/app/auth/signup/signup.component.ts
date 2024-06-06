@@ -1,10 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {UserRole} from "../enums/userRole";
 import {Router} from "@angular/router";
 import {AuthService} from "../services/auth.service";
 import {HandleErrorService} from "../services/handle-error.service";
-import {LoginModel} from "../models/loginModel";
 import {LoginResponse} from "../models/loginResponse";
 import {HttpErrorResponse} from "@angular/common/http";
 import {BaseComponent} from "../basic/base.component";
@@ -21,9 +19,7 @@ export class SignupComponent extends BaseComponent implements OnInit  {
   loginForm!: FormGroup;
   email!: string;
   password!: string;
-  isLoginSuccessful: boolean = false;
-  isLoginFailed: boolean = false;
-  selectedRole!: UserRole;
+
   constructor(
     private fb: FormBuilder,
     private router: Router,

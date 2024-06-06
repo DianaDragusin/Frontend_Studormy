@@ -14,7 +14,7 @@
   </div>
   <div *ngIf="cluster !== -1 && !isAllocationProcessOver">
     <mat-card class="wide-card">
-      <h2>Congratulations you are part of cluster {{cluster}}. Here are some suggestions of people like you, in your dorm</h2>
+      <h2>Congratulations you are part of the {{getClusterName(cluster)}}. Here are some suggestions of people like you, in your dorm</h2>
     </mat-card>
     <div class="student-cards-container">
        <div *ngFor="let student of students">

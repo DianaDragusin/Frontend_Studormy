@@ -7,6 +7,7 @@ import {HttpClient, HttpEventType} from "@angular/common/http";
 import {StudentResponse} from "../../models/studentResponse";
 import {LoginResponse} from "../../../auth/models/loginResponse";
 import {HandleErrorService} from "../../../auth/services/handle-error.service";
+import * as CryptoJS from "crypto-js";
 
 @Component({
   selector: 'app-uploadfile',
@@ -63,7 +64,7 @@ export class UploadfileComponent {
 
       return {
         email: email,
-        password: password,
+        password: CryptoJS.SHA256(password).toString(),
         registrationNumber: registrationNumberInt,
         dormitory: dormitoryInt
       };

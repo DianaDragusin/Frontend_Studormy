@@ -10,6 +10,8 @@ import {ApplyForRoomsComponent} from "./components/apply-for-rooms/apply-for-roo
 import {ChartComponent} from "./components/chart/chart.component";
 import {ChartsComponent} from "./components/charts/charts.component";
 import {authGuard} from "../auth/guards/auth.guard";
+import {ClustersComponent} from "./components/clusters/clusters.component";
+import {BigFiveComponent} from "./components/big-five/big-five.component";
 
 const routes: Routes = [
   {
@@ -30,6 +32,16 @@ const routes: Routes = [
   {
     path: 'apply-for-rooms',
     component: ApplyForRoomsComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'clusters',
+    component: ClustersComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'big-five',
+    component: BigFiveComponent,
     canActivate: [authGuard],
   },
   {

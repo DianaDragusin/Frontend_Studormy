@@ -1,0 +1,24 @@
+.text-container {
+  padding: 20px;
+  margin: 5% 15% 1%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+.clusters-image {
+  width: 80%;
+  height:80%;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+.image-container{
+  display: flex;
+  justify-content: center;
+}
+
+mat-card-header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+

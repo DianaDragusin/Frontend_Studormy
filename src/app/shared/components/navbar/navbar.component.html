@@ -1,6 +1,6 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row *ngIf='userRole == "student"'>
-    <button (click)="openEditModal()"  mat-icon-button>
+    <button (click)="openEditModal()"  mat-icon-button matTooltip="Edit Profile">
       <div *ngIf="studentData?.avatarImage== null">
       <mat-icon >account_circle</mat-icon>
       </div>
@@ -12,8 +12,9 @@
     <button mat-raised-button color="primary"  [routerLink]="['/student-groups']" [queryParams]="{ idStudent: studentData?.id }" >My Groups</button>
     <button mat-raised-button color="primary"  [routerLink]="['/apply-for-rooms']" [queryParams]="{ idStudent: studentData?.id }" >Apply For Room</button>
     <button mat-raised-button color="primary"  [routerLink]="['/charts']" [queryParams]="{ idStudent: studentData?.id }" >Allocation Process Details</button>
-
-    <button (click)="logOut()" mat-icon-button>
+    <button mat-raised-button color="primary"  [routerLink]="['/big-five']" [queryParams]="{ idStudent: studentData?.id }"  matTooltip="Info about the Big Five Personality" ><mat-icon>explore</mat-icon></button>
+    <button mat-raised-button color="primary"  [routerLink]="['/clusters']" [queryParams]="{ idStudent: studentData?.id }"  matTooltip="Info about the Cluster Types"> <mat-icon>group_work</mat-icon></button>
+    <button (click)="logOut()" mat-icon-button matTooltip="Log Out">
       <mat-icon>input</mat-icon>
     </button>
 
@@ -28,7 +29,7 @@
     <button mat-raised-button color="primary"  [routerLink]="['/room-allocation-settings']" [queryParams]="{ idAdmin: adminData?.id }" >Room Allocation Settings</button>
     <button mat-raised-button color="primary"  [routerLink]="['/room-allocation']" [queryParams]="{ idAdmin: adminData?.id }" >Final Room Allocation</button>
 
-    <button (click)="logOut()" mat-icon-button>
+    <button (click)="logOut()" mat-icon-button matTooltip="Log Out">
       <mat-icon>input</mat-icon>
     </button>
 

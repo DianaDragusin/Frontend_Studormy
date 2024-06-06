@@ -3,6 +3,7 @@ import {ClusterStudentsService} from "../../services/cluster-students.service";
 import {ActivatedRoute} from "@angular/router";
 import {GetStudentMembershipValues} from "../../models/GetStudentMembershipValues";
 import {HandleErrorService} from "../../../auth/services/handle-error.service";
+import {ClustersEnum} from "../../../shared/utils/cluster.enum";
 interface LegendEntry {
   label: string;
   percentage: number;
@@ -20,7 +21,7 @@ export class ChartComponent implements  OnChanges {
   @Input() chartId: string = '';
   private percentages: number[] = [];
 
-  private labels = ["Cluster 0", "Cluster 1", "Cluster 2", "Cluster 3", "Cluster 4"];
+  private labels = [ClustersEnum.cluster0 + " (Cluster 0)",ClustersEnum.cluster1 + " (Cluster 1)",ClustersEnum.cluster2 + " (Cluster 2)",ClustersEnum.cluster3 + " (Cluster 3)",ClustersEnum.cluster4 + " (Cluster 4)"];
   private colors = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF'];
 
   legendData: LegendEntry[] = [];
